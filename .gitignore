@@ -4,9 +4,6 @@
 # Mac
 .DS_Store
 
-# Compiled site
-_site
-
 # Sass garbage
 .sass-cache
 
