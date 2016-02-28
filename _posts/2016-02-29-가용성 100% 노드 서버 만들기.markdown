@@ -1,12 +1,26 @@
 ---
 layout: post
-title:  "Node.js 분산부하 테스팅"
-date:   2015-04-18 08:43:59
-author: 정승현
+title:  "가용성 100% 노드 서버 만들기"
+date:   2016-02-29 00:00:00
+author: 승구
 categories: Node.js
-tags:	분산부하, Node.js
+tags:	Node.js, 운영, 가용성
 cover:  "/assets/instacode.png"
 ---
+
+자신이 만든 서비스를 매일 사용해주는 사용자가 있습니다.
+그런 단골 사용자가 어느 날 서비스에 들어왔는데 "이 페이지는 찾을 수 없습니다"란 문구를 보고
+"서비스를 더 이상 운영하지 않나?"라고 생각이 들어 다음부터 오지 않는다면 그것만큼 서비스에 큰 피해가 생기는 것이 없겠죠.
+
+그 만큼 서비스의 가용성을 높여 항상 클라이언트의 요청에 응답을 줄 수 있게 해주는 것이 중요한 것은
+이 글을 읽으시는 분 모두 아실겁니다. 하지만 생각보다 노드를 운영하면서 가용성 100%에 도전하는 것은 생각보다 어렵습니다.
+
+대규모 서버를 운영하시는 분들에겐 [로드 밸런싱][load-balancing]라는 강력한 무기가 있지만,
+서비스를 막 시작하거나 규모가 작은 서비스에서는 로드 밸런스 등이 오히려 부담이 될 수 있다고 생각합니다.
+이번 포스트는 이런 분들에게 더욱 도움이 될 것 같습니다만,
+대규모 서버에도 꼭 도입이 필요하다고 생각합니다.
+
+
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
@@ -72,3 +86,5 @@ Check out the [Jekyll docs][jekyll] for more info on how to get the most out of 
 [lightbox]:    http://lokeshdhakar.com/projects/lightbox2/
 [jekyll-archive]: https://github.com/jekyll/jekyll-archives
 [liquid]: https://github.com/Shopify/liquid/wiki/Liquid-for-Designers
+
+[load-balancing]: https://en.wikipedia.org/wiki/Load_balancing_(computing)
