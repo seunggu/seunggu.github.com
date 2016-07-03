@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "가용성 100% 노드 서버 만들기"
-date:   2016-02-29 00:00:00
+date:   2016-02-28 00:00:00
 author: 승구
 categories: Node.js
 tags:	Node.js, 운영, 가용성
@@ -20,7 +20,15 @@ cover:  "/assets/instacode.png"
 이번 포스트는 이런 분들에게 더욱 도움이 될 것 같습니다만,
 대규모 서버에도 꼭 도입이 필요하다고 생각합니다.
 
+## 첫번째, 에러의 종류와 처리과정 알기
 
+먼저 노드에서 에러를 전달하는 3가지 방법이 있습니다.
+* Error를 throw하는 방법. ex) throw new Erorr('error');
+* error 객체를 error handler callback에 전달하는 방법. ex) next(err);
+* EventEmitter를 통해 "error" event emit
+
+error 객체는 Error class의 instance입니다. error 객체는 handler 함수에 패스되거나 throw 할 수 있죠.
+error 객체가 throw 되었을 때, exception이 됩니다.
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
@@ -79,6 +87,15 @@ For more information, check out the [Lightbox][lightbox] website.
 
 Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
 
+
+
+### 참고 사이트
+* [[cookbook]올바른 Exception 처리방법][reference-1]
+* [[cookbook] Domain API (또다른 try ~ catch)][reference-2]
+* [Crash safety using domains in Node.js][reference-3]
+* [THE 4 KEYS TO 100% UPTIME WITH NODE.JS][reference-4]
+* [Error Handling in Node.js][reference-5]
+
 [jekyll]:      http://jekyllrb.com
 [jekyll-gh]:   https://github.com/jekyll/jekyll
 [jekyll-help]: https://github.com/jekyll/jekyll-help
@@ -88,3 +105,8 @@ Check out the [Jekyll docs][jekyll] for more info on how to get the most out of 
 [liquid]: https://github.com/Shopify/liquid/wiki/Liquid-for-Designers
 
 [load-balancing]: https://en.wikipedia.org/wiki/Load_balancing_(computing)
+[reference-1]: http://nodeqa.com/nodejs_ref/106
+[reference-2]: http://nodeqa.com/nodejs_ref/19
+[reference-3]: https://engineering.gosquared.com/error-handling-using-domains-node-js
+[reference-4]: http://engineering.fluencia.com/blog/2013/12/20/the-4-keys-to-100-uptime-with-nodejs
+[reference-5]: https://www.joyent.com/developers/node/design/errors

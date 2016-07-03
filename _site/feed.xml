@@ -6,9 +6,33 @@
 </description>
     <link>http://seunggu.github.io/</link>
     <atom:link href="http://seunggu.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 29 Feb 2016 01:09:41 +0900</pubDate>
-    <lastBuildDate>Mon, 29 Feb 2016 01:09:41 +0900</lastBuildDate>
+    <pubDate>Sun, 03 Jul 2016 22:08:03 +0900</pubDate>
+    <lastBuildDate>Sun, 03 Jul 2016 22:08:03 +0900</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>반갑습니다</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;반갑습니다!&lt;/h2&gt;
+
+&lt;p&gt;예전부터 미뤄온 일을 하는 것처럼 막막하고 어떻게 시작해야될지 깜깜하지만
+이렇게 시작을 하다가 보면 습관이 되고 더욱 편해질 것 같아 &lt;strong&gt;시작이 반&lt;/strong&gt;이라는 마음으로 첫 블로그 글을 써 내려가 봅니다.&lt;/p&gt;
+
+&lt;p&gt;매일 개발을 하면서 느끼는 것도 있고 배워가는 것들이 많지만, 
+이렇게 글을 쓰거나 메모를 하지 않으면 금새 잊혀져가는게 안타깝고
+다른 개발자분들과 공유하며 피드백도 받고 싶어 시작하게 되었습니다.&lt;/p&gt;
+
+&lt;p&gt;많은 이야기를 함께 했으면 좋겠습니다.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 03 Jul 2016 06:52:00 +0900</pubDate>
+        <link>http://seunggu.github.io/%EC%9D%B8%EC%82%AC/2016/07/03/greeting.html</link>
+        <guid isPermaLink="true">http://seunggu.github.io/%EC%9D%B8%EC%82%AC/2016/07/03/greeting.html</guid>
+        
+        <category>인사</category>
+        
+        
+        <category>인사</category>
+        
+      </item>
     
   </channel>
 </rss>
