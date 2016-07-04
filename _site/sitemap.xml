@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://seunggu.github.io/aws/2016/07/04/s3-versioning.html</loc>
+<lastmod>2016-07-04T14:24:00+09:00</lastmod>
+</url>
+<url>
 <loc>http://seunggu.github.io/%25EC%259D%25B8%25EC%2582%25AC/2016/07/03/greeting.html</loc>
 <lastmod>2016-07-03T06:52:00+09:00</lastmod>
 </url>

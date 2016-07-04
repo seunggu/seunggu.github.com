@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>S3 Versioning에 대해 알아보기</title>
+  <meta name="description" content="1. S3 Versioning">
+  
+  <meta name="author" content="승구">
+  <meta name="copyright" content="&copy; 승구 2016">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/monokai_sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="1. S3 Versioning" />
+  <meta property="og:url" content="http://seunggu.github.io" />
+  <meta property="og:site_name" content="승구 개발 블로그" />
+  <meta property="og:title" content="S3 Versioning에 대해 알아보기" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://seunggu.github.io/assets/black-background.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="322" />
+  <meta property="og:image:height" content="79" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="S3 Versioning에 대해 알아보기">
+  <meta name="twitter:description" content="1. S3 Versioning">
+  <meta name="twitter:image" content="http://seunggu.github.io/assets/black-background.png">
+  <meta name="twitter:url" content="http://seunggu.github.io">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://seunggu.github.io/aws/2016/07/04/s3-versioning.html">
+  <link rel="alternate" type="application/rss+xml" title="승구 개발 블로그" href="http://seunggu.github.io/feed.xml" />
+</head>
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/main_logo2.png" alt="승구 개발 블로그">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button black-a" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+        
+        <li class="nav-link"><a class="black-a" href="/about/">About</a>
+          
+          
+        
+          
+        
+          
+        
+          
+        
+        <li class="nav-link"><a class="black-a" href="/posts/">Posts</a>
+          
+          
+        
+        <li class="nav-link"><a class="black-a" href="/typography/">Typography</a>
+          
+          
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/black-background.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">S3 Versioning에 대해 알아보기</h1>
+      <p class="info">by <strong>승구</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">July 4, 2016</div>
+  <div class="post-categories">
+  in 
+    
+    <span>Aws</span>
+    
+  
+  </div>
+</section>  
+
+<article class="post-content">
+  <h2 id="s3-versioning">1. S3 Versioning</h2>
+
+<p>최근에 S3을 주로 사용하는 프로젝트를 진행하고 있습니다.
+비지니스 로직에 필요한 부분이 같은 파일(같은 S3 key를 가지는 파일)을 조금씩 수정하여 S3에 저장하는
+프로세스가 있어 S3에 문서를 훓어 보다가 <code class="highlighter-rouge">S3 Versioning</code>이라는 것을 발견했습니다.
+단순히 설명을 하면, Git처럼 S3에 올린 파일에 대해서 버전관리를 해주는 것인데요.
+비지니스 로직이 단순히 S3에 파일을 저장하고 그게 끝이라면 딱히 필요없는 기능이지만,
+현재 진행하는 프로젝트처럼 동일한 파일을 다시 자주하는 수정하는 로직이 필요하다면 
+생각해볼만한 좋은 기능입니다.
+<br /><br /></p>
+
+<h2 id="version-id">2. Version id</h2>
+
+<p>S3에 Bucket은 기본적으로 Versioning이 켜지지 않은 상태로 되어있고 
+Versioning은 <strong>Bucket 단위</strong>로만 켜고 끌 수 있습니다.
+Versioning을 시작하려면 AWS Console에서는 간단히 변경할 수 있습니다.
+아래의 사진처럼 Bucket Property에 Versioning 관련 속성이 있어서 
+<strong>Enable Versioning</strong> 버튼만 누르면
+해당 Bucket은 Versioning이 켜지게 됩니다.</p>
+
+<p><img src="/assets/s3-versioning/console.png" alt="s3-console" /></p>
+
+<p>Bucket의 Object(파일)은 Versioning이 켜져 있든 아니든 
+모두 <code class="highlighter-rouge">version id</code> 메타데이터를 가지고 있습니다.
+그리고 Versioning이 꺼져 있을 경우는 <strong>null</strong> 값을 가지게 되고 
+Versioning을 키고 Object를 업로드 할 경우에 <code class="highlighter-rouge">version id</code>에 S3에서 <strong>자동</strong>으로 지정하게 됩니다.
+이렇게 Versioning을 <code class="highlighter-rouge">version id</code>를 기준으로 작동하게 됩니다.
+(예를 들면 Git의 <strong>commit hash</strong>와 비슷하다고 볼 수 있습니다.)
+<br /><br /></p>
+
+<h2 id="current-vs-noncurrent">3. current vs noncurrent</h2>
+
+<p>S3 Versioning은 이 version id를 가지고 Object들을 관리하게 됩니다.
+기존에 파일을 하나 업로드한 뒤 S3 Key가 동일하도록 같은 이름의 파일을 다시 업로드 하면
+Versioning은 기존 파일 위에 파일을 저장하게 됩니다.
+그리고 파일에 접근 할 땐 제일 최근의 것으로 접근하게 됩니다.
+여기서 제일 최근의 Object를 <code class="highlighter-rouge">current version</code>라 부르고 
+기존의 Object를 <code class="highlighter-rouge">noncurrent version</code>이라 부릅니다.
+S3 Key를 이용하여 Object를 불러오면 <code class="highlighter-rouge">current version</code>의 Object를 가져오지만
+<code class="highlighter-rouge">noncurrent version</code>의 Object를 가져오려면 <strong>version id</strong>를 사용하여 가져 올 수 있습니다.</p>
+
+<p><img src="/assets/s3-versioning/version-id-console.png" alt="version-id-console" /></p>
+
+<p><br /><br /></p>
+
+<h2 id="delete-marker">4. Delete Marker</h2>
+
+<p>당연히 Versioning을 이용하면 삭제된 Object도 복구 할 수 있습니다.
+이런 기능이 가능한 이유는 Versioning을 켜놓았을 경우 S3는 해당 Object를 삭제 하지 않습니다.
+그 대신 Version id <code class="highlighter-rouge">Delete Marker</code>를 <strong>current version</strong>으로 설정합니다.
+그래서 삭제한 경우엔 <strong>current version</strong>이 <code class="highlighter-rouge">Delete Marker</code>이기 때문에
+삭제된 문서로 인식하지만, <strong>noncurrent version</strong>의 Object로 
+언제든지 복구가능하고 가져 올 수 있습니다.</p>
+
+<p><img src="/assets/s3-versioning/delete-marker.png" alt="delete-marker" /></p>
+
+<p><img src="/assets/s3-versioning/delete-marker-console.png" alt="delete-maker-console" /></p>
+
+<p><br /><br /></p>
+
+<h2 id="lifecycle-configuration-for-a-bucket-with-versioning">5. Lifecycle Configuration for a Bucket with Versioning</h2>
+
+<p>기본적으로 S3는 <code class="highlighter-rouge">Lifecyle Configuration</code>을 지원합니다.
+간단한 예를 들면, 만약 프로젝트에서 S3에 Object를 생성하고 
+해당 Object가 생성 후 1년뒤에 필요가 없어진다면 
+굳이 필요없는 Object를 저장해 둘 필요가 없습니다.
+S3는 저장된 용량에 따라 월비용을 내야되기 때문에 
+사용하지 않는 Object는 지워주는게 비용을 절감할 수 있습니다.
+<code class="highlighter-rouge">Lifecyle Configuration</code>을 통해 Object를 생성 후 1년뒤에 삭제되도록 설정하면
+자동으로 지워지게 되기 때문에 신경을 크게 쓰지않고 비용을 절감 할 수 있습니다</p>
+
+<p>Versioning의 좋은 점은 <strong>current version</strong>과 <strong>noncurrent version</strong>에 대해
+각각 따로 <code class="highlighter-rouge">Lifecyle Configuration</code>이 가능하기 때문에 더욱 쉽게 Object들을 관리하여
+비용을 절감 할 수 있습니다. 저도 이 장점이 Versioning을 사용하게된 큰 이유 중 하나입니다.
+(Lifecycle에 대한 내용은 이 글에서 주제에 벗어나므로 참고자료에 링크 걸어 두었습니다)
+<br /><br /></p>
+
+<h2 id="section">6. 장점</h2>
+
+<ul>
+  <li>version에 따른 Lifecycle Configuration이 가능하다.</li>
+  <li>같은 파일에 대해 덮어쓸 때 기존의 데이터도 보관하고 싶은데 비용이 걱정될 때가 적절하다.</li>
+  <li>Versioning을 사용하지 않을 때와 비용하여 동일한 
+Object를 삭제할 때 일일이 찾아서 삭제 하지않고 한번에 삭제 가능하다.</li>
+  <li>삭제한 Object를 복구할 수 있다.
+<br /><br /></li>
+</ul>
+
+<h2 id="section-1">7. 단점</h2>
+
+<ul>
+  <li>아무래도 널리 사용되는 S3의 기능이 아니다 보니 다른 개발자가 와서 일을 할 시에 배워야한다.</li>
+  <li>Bucket 단위로만 Versioning 설정이 되어 아쉽다.
+<br /><br /></li>
+</ul>
+
+<h2 id="section-2">8. 참고자료</h2>
+
+<ul>
+  <li><a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectVersioning.html">AWS 공식 문서(Object Lifecycle Management)</a></li>
+  <li><a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html">AWS 공식 문서(Using Versioning)</a></li>
+  <li><a href="http://docs.aws.amazon.com/AmazonS3/latest/UG/lifecycle-configuration-bucket-with-versioning.html">AWS 공식 문서(Lifecycle Configuration for a Bucket with Versioning)</a></li>
+</ul>
+
+
+</article>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=S3+Versioning%EC%97%90+%EB%8C%80%ED%95%B4+%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0&url=http://seunggu.github.io/aws/2016/07/04/s3-versioning.html&via=imaster0209"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=S3+Versioning%EC%97%90+%EB%8C%80%ED%95%B4+%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0&u=http://seunggu.github.io/aws/2016/07/04/s3-versioning.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'seunggu';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">승구 개발 블로그</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+        <li class="nav-link"><a href="/about/">About</a>
+          
+          
+        
+          
+        
+          
+        
+          
+        
+        <li class="nav-link"><a href="/posts/">Posts</a>
+          
+          
+        
+        <li class="nav-link"><a href="/typography/">Typography</a>
+          
+          
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:imaster0029@naver.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">imaster0029@naver.com</span>
+          </a>
+        </li>
+
+        
+        
+        <li>
+          <a href="https://twitter.com/imaster0209" title="Follow me on Twitter">
+            <i class="fa fa-twitter"></i>
+            <span class="username">imaster0209</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
+        <li>
+          <a href="https://github.com/seunggu" title="Fork me on GitHub">
+            <i class="fa fa-github"></i>
+            <span class="username">seunggu</span>
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a href="https://www.linkedin.com/pub/ben-centra/47/769/60a" title="Connect with me on LinkedIn">
+            <i class="fa fa-linkedin"></i>
+            <span class="username">Ben Centra</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">A Blog dealing with JavaScript, NodeJS, AngularJS, Ionic, iOS, etc...
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+<script>
+
+  $(document).ready(function() {
+
+    // Syntax highlighting
+    hljs.initHighlightingOnLoad();
+
+    // Header
+    var menuToggle = $('#js-mobile-menu').unbind();
+    $('#js-navigation-menu').removeClass("show");
+    menuToggle.on('click', function(e) {
+      e.preventDefault();
+      $('#js-navigation-menu').slideToggle(function(){
+        if($('#js-navigation-menu').is(':hidden')) {
+          $('#js-navigation-menu').removeAttr('style');
+        }
+      });
+    });
+
+
+  });
+
+</script>
+
+
+
+
+  </body>
+
+</html>
