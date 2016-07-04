@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "S3 Versioning에 대해 알아보기"
-date: 2016-07-04 5:24:00
+date: 2016-07-04 05:24:00
 author: 승구
 categories: aws
 tags: aws, s3, s3 versioning
