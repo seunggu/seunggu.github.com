@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "S3 Versioning에 대해 알아보기"
-date: 2016-07-04 05:24:00
+date: 2016-07-04 00:00:00
 author: 승구
-categories: aws
-tags: aws, s3, s3 versioning
+categories: [aws]
+tags: [aws, s3, s3 versioning]
 cover: "/assets/black-background.png"
 ---
 
