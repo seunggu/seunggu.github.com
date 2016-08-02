@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Node.js에 대한 고찰과 도입 </title>
+  <meta name="description" content="1. 최근 유명 기업들은 왜 Node.js 도입하는가">
+  
+  <meta name="author" content="승구">
+  <meta name="copyright" content="&copy; 승구 2016">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/monokai_sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="1. 최근 유명 기업들은 왜 Node.js 도입하는가" />
+  <meta property="og:url" content="http://seunggu.github.io" />
+  <meta property="og:site_name" content="승구 개발 블로그" />
+  <meta property="og:title" content="Node.js에 대한 고찰과 도입 " />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://seunggu.github.io/assets/black-background.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="322" />
+  <meta property="og:image:height" content="79" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Node.js에 대한 고찰과 도입 ">
+  <meta name="twitter:description" content="1. 최근 유명 기업들은 왜 Node.js 도입하는가">
+  <meta name="twitter:image" content="http://seunggu.github.io/assets/black-background.png">
+  <meta name="twitter:url" content="http://seunggu.github.io">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://seunggu.github.io/node.js/2016/07/31/nodejs-introduction.html">
+  <link rel="alternate" type="application/rss+xml" title="승구 개발 블로그" href="http://seunggu.github.io/feed.xml" />
+</head>
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/main_logo2.png" alt="승구 개발 블로그">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button black-a" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+        
+        <li class="nav-link"><a class="black-a" href="/about/">About</a>
+          
+          
+        
+          
+        
+          
+        
+          
+        
+        <li class="nav-link"><a class="black-a" href="/posts/">Posts</a>
+          
+          
+        
+        <li class="nav-link"><a class="black-a" href="/typography/">Typography</a>
+          
+          
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/black-background.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">Node.js에 대한 고찰과 도입 </h1>
+      <p class="info">by <strong>승구</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">July 31, 2016</div>
+  <div class="post-categories">
+  in 
+    
+    <span>Node.js</span>
+    
+  
+  </div>
+</section>  
+
+<article class="post-content">
+  <h2 id="nodejs-">1. 최근 유명 기업들은 왜 Node.js 도입하는가</h2>
+
+<p>최근 많은 해외 유명 기업들이 <code class="highlighter-rouge">Node.js</code>를 사용하고 있다는 걸 들어보신 적이 있으실겁니다.
+그리고 점차 그 추세가 증가하고 있습니다.
+대표적인 기업으로는 최근에 MS에 인수가 된 <strong>LinkedIn</strong>, 올해부터 국내에도 서비스를 시작한 <strong>Netflix</strong>, 
+해외 결제 하실 때마다 보게되는 <strong>PayPal</strong>이 있습니다.
+위 기업들은 세계적으로 유명하고 엄청난 트래픽을 처리하죠. 
+2014년 이후부터 기업에서도 Production 환경에서 <code class="highlighter-rouge">Node.js</code>를 사용하는 일이 실제 일어나고 있습니다.
+이 글에서 기업들이 말한 Node.js를 도입하게 된 이유와 느낀 점을 정리하면서 <code class="highlighter-rouge">Node.js</code>에 대해 조금 더 현실적이고 깊게 이야기를 해보려고 합니다.
+(우선 기업들이 도입을 결정한 이유에는 장점만 언급한 경우가 많고, 후에 단점들을 함께 얘기하며 도입시 고려사항을 정리하겠습니다)
+<br /><br /></p>
+
+<h2 id="linkedin--">2. LinkedIn, 높은 효율성</h2>
+
+<blockquote>
+  <p>-  <strong>LinkedIn</strong><br />
+One of LinkedIn’s biggest win was the 10:1 ratio reduction in the number of machines used to host their services after switching from Ruby on Rails to Node.js</p>
+</blockquote>
+
+<p><code class="highlighter-rouge">LinkedIn</code>은 기존 RoR서버를 Node로 변경하면서 인프라를 1/10로 줄이게 됬다고 합니다.
+이에 대한 장점은 GoDaddy도 언급한 장점이기도 합니다. <code class="highlighter-rouge">GoDaddy</code>는 기존 C#으로 작성한 서버의 인프라의 단 <strong>1/10</strong>만으로
+여전히 같은 (오히려 더 많은!!) 트래픽을 처리하고 있다고 합니다. 이 글이 작성된 시기의 <code class="highlighter-rouge">GoDaddy</code> 트래픽은 <strong>초당 170만</strong>이였다고 합니다.
+이렇게 높은 효율의 트래픽 처리가 가능한 것은 Node.js의 <strong>Single Thread 기반의 비동기 처리 IO</strong> 때문이죠.
+보통 동기 프로그래밍에선 IO 작업을 할 경우 처리를 기다리는데 비용을 낭비하게 되는데 
+Node.js는 IO작업을 요청하고 다른 일을 하고 요청한 IO작업이 처리가 된 후에 이벤트를 받아 그 후의 일을 계속하기 때문에 효율적으로 IO처리를 하게 되죠.
+그래서 보통 Node의 장점에 <a href="http://www.kegel.com/c10k.html">c10k problem</a>에 대해 최적화 되어 있음을 많이 얘기합니다.
+<br /><br /></p>
+
+<h2 id="paypal--netfilx--">3. PayPal &amp; Netfilx, 높은 생산성</h2>
+
+<blockquote>
+  <p>- <strong>PayPal</strong><br />
+Node.js and an all Javascript development stack helped PayPal bring efficiencies in engineering and helped rethink and reboot product, design and operational thinking.” - Sameera Rao, Sr. Business Products Engineering Manager<br />
+- <strong>Netflix</strong><br />
+Using Node.js at Netflix gave a productivity boost to the engineers and improved user experience for the customers.</p>
+</blockquote>
+
+<p><code class="highlighter-rouge">PayPal</code>의 경우엔 기존 프론트엔드와 백엔드의 언어가 달랐는데 백엔드를 Node.js로 변경하면서
+프론트엔드와 백엔드의 언어가 통일되고 팀 전체의 효율이 증가한 것에 큰 도움을 받았다고 합니다.
+사실 Node.js가 유명세를 크게 타게 된 것도 프론트엔드 개발자들이 백엔드에 쉽게 다가갈 수 있다는 점이 크게 작용한 것도 사실이고,
+Node로 개발을 하는 FullStack 개발자가 많은 것도 사실입니다.
+그 만큼 Node가 Javascript란 언어로 다가갈 수 있다는 점이 크게 작용합니다.
+보통 Java와 생산성을 비교할 때도 Node를 이용하면 <strong>1/10</strong>의 시간밖에 들지 않는다고 이야기를 합니다.
+많이들 알고 계시지만 <strong>npm(node package manager)</strong>의 영향력도 무시할 수 없습니다.
+많은 모듈들이 사용가능함에 따라 Node 생태계에 들어오는 장벽이 많이 부서졌다고 생각합니다.
+<br /><br /></p>
+
+<h2 id="section">4. 기타 도입시의 장점</h2>
+
+<p>위에서 크게 두가지의 장점을 언급했는데요, 앞처럼 큰 장점은 아니지만 간단한 <code class="highlighter-rouge">(Web)Socket</code>를 구현할 때도 좋습니다.
+Node.js를 한번 경험해보셨으면 <a href="http://socket.io">Socket.io</a>라고 많이 아실거라 생각합니다.
+그리고 무엇보다 빠르게 <code class="highlighter-rouge">프로토타이핑</code>을 해야하는 스타트업 같은 경우 높은 생산성 때문에 좋습니다.
+이 경우엔 동적언어를 사용하는 프레임워크(RoR, Django 등) 모두 해당되는 장점입니다.
+하지만 MongoDB와 함께 간단한 프로젝트를 만든다면 Node.js와 호환성이 좋으니 Node.js가 월등히 좋죠.
+현재 Node.js 프로젝트를 지원하는 기업들(IBM, Intel, MS 등)이 늘어나고 있다는 점도 좋게 볼 수 있습니다.
+Javascript가 <a href="https://en.wikipedia.org/wiki/Continuation-passing_style">CPS 패턴</a>으로 작성되다 보니
+코드의 가독성이 안좋다란 말을 많이 듣게 되었는데요. Node.js의 버전 v6에서는 
+<a href="http://es6-features.org/#Constants">ES6</a>를 지원하므로 예전의 문제였던 가독성도 더 좋아졌습니다.
+<br /><br /></p>
+
+<h2 id="section-1">5. 도입시 꼭 고려해야할 단점</h2>
+
+<p>위에 이야기들은 모두 Node의 장점들을 나열 하였는데요.
+이제 보여드릴 단점 때문에, Node.js의 도입이 이루어지지 않는 경우가 많습니다.
+우선 Java의 프레임워크와 비교하면 역사가 짧고 <code class="highlighter-rouge">Enterprise 환경</code>에서 <strong>검증되지 않은 점</strong>입니다.
+위의 기업들이 Production 환경에서 사용하고 있는 점들은 굉장히 힘이 되는 부분이지만, 
+아직은 <strong>의심의 눈초리</strong>로 Node.js를 보는 입장이 많습니다.
+이미 Java 프레임워크들은 현재까지 트래픽이 많은 Enterprise 환경에서 잘 동작해주었고,
+그 만큼 검증이 되었으며 안정적이고 사내 개발자 풀도 많습니다. 
+국내에선 전자정부 프레임워크라는 장벽도 무시할 수 없구요.
+<br /><br />
+그리고 Node가 Single Thread에서 돌아가는지라 하나의 cpu 작업에 시간이 많이 걸리면, 전체적인 시스템 성능이 굉장히 떨어집니다.
+그래서 cpu가 많이 사용되는 프로젝트에선 좋지 않습니다.
+실제로 cpu를 많이 사용하게 된 프로젝트를 Node로 한 적이 있었는데 cpu가 정말 기하급수적으로 올라갑니다.
+그리고 국내에서 도입할 경우엔 서비스내에서 이메일이나 문자 또는 본인인증관련해서 사용하게 될 경우가 있을 수 있는데,
+국내 서드파티에선 Node.js를 잘 지원하지 않는 점도 큰 단점 중 하나입니다.
+이메일이나 문자 정도는 해외 서비스를 사용한다고 하지만, 본인인증관련해서는 국내 서비스를 사용할 수 밖에 없으니 생각보다 큰 걸림돌입니다.
+<br /><br /></p>
+
+<h2 id="section-2">6. 개인적인 도입가이드</h2>
+
+<p>저의 개인적인 생각으론 Node.js를 <strong>우호적</strong>으로 바라보고 있습니다. <strong>높은 효율성과 생산성</strong> 때문인데요.
+하지만, <code class="highlighter-rouge">Node.js</code>를 도입해서 효율을 끌어낼 수 있는 상황과 오히려 반대인 상황을 잘 판단하셔야 합니다.
+Node.js는 <strong>장단점이 확실</strong>하고 잘 사용해야 큰 효율을 발휘 할 수 있습니다.
+만약 프로젝트가 무겁고 cpu를 많이 사용한다면 Node.js의 도입은 당연히 좋지 않습니다.
+여러 문제가 터질 수 있고 동적언어를 이용하다보니 디버깅도 쉽진 않습니다.
+하지만 단순 DB작업을 하거나 간단한 프로젝트일 경우가 Node.js에 적합합니다.
+웹서버로써의 역활도 좋고, 생산성도 뛰어나고 효율도 좋은 장점을 적극 활용할 수 있는 프로젝트에서 사용하면 좋습니다.
+예를들면, 스타트업에서 프로토타입을 만들기에도 적합하고 인원이 적은 개발팀에서 웹서비스를 만들때에 적은 인원으로 효율을 낼 수 있습니다.
+확실히 이런 장단점이 존재하니 잘 판단하셔서 도입을 하시면 좋은 결과를 낼 수 있을 것 같습니다.
+<br /><br /></p>
+
+<h2 id="section-3">7. 장점 정리</h2>
+
+<ul>
+  <li>인프라를 적게 사용하는 높은 효율성 == 비용 절감</li>
+  <li>많은 요청을 견대낼 수 있는 힘(c10k 최적화)</li>
+  <li>높은 생산성</li>
+  <li>Front-end와 Back-end 모두 Javascript로 가능</li>
+  <li>커져가는 생태계 (npm, 참여하는 기업들 등)</li>
+  <li>프로토타이핑에 좋음</li>
+  <li>v6부터 ES6로 가독성이 더 좋아짐
+<br /><br /></li>
+</ul>
+
+<h2 id="section-4">8. 단점 정리</h2>
+
+<ul>
+  <li>cpu 작업에 약함</li>
+  <li>국내에서 사용하기엔 제약이 존재 (국내 써드파티의 지원, 개발자 풀 등)</li>
+  <li>역사가 짧아 안정적이지 않음</li>
+  <li>Enterprise 환경에서의 역활에 대한 의심의 눈초리
+<br /><br /></li>
+</ul>
+
+<h2 id="section-5">9. 참고자료</h2>
+
+<ul>
+  <li><a href="https://risingstack.com/nodejs-is-enterprise-ready?utm_source=how-enterprises-benefit-from-nodejs&amp;utm_medium=rsblog&amp;utm_campaign=whitepaper">Node.js is Enterprise Ready</a></li>
+  <li><a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.htmlhttps://blog.risingstack.com/how-enterprises-benefit-from-nodejs/">How Enterprises Benefit form Node.js</a></li>
+  <li><a href="http://rocksea.tistory.com/253">Node.js에 대한 단상</a></li>
+  <li><a href="http://bcho.tistory.com/876">Node.js에 장단점에 대해</a></li>
+</ul>
+
+
+</article>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=Node.js%EC%97%90+%EB%8C%80%ED%95%9C+%EA%B3%A0%EC%B0%B0%EA%B3%BC+%EB%8F%84%EC%9E%85+&url=http://seunggu.github.io/node.js/2016/07/31/nodejs-introduction.html&via=imaster0209"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=Node.js%EC%97%90+%EB%8C%80%ED%95%9C+%EA%B3%A0%EC%B0%B0%EA%B3%BC+%EB%8F%84%EC%9E%85+&u=http://seunggu.github.io/node.js/2016/07/31/nodejs-introduction.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'seunggu';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">승구 개발 블로그</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+        <li class="nav-link"><a href="/about/">About</a>
+          
+          
+        
+          
+        
+          
+        
+          
+        
+        <li class="nav-link"><a href="/posts/">Posts</a>
+          
+          
+        
+        <li class="nav-link"><a href="/typography/">Typography</a>
+          
+          
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:imaster0029@naver.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">imaster0029@naver.com</span>
+          </a>
+        </li>
+
+        
+        
+        <li>
+          <a href="https://twitter.com/imaster0209" title="Follow me on Twitter">
+            <i class="fa fa-twitter"></i>
+            <span class="username">imaster0209</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
+        <li>
+          <a href="https://github.com/seunggu" title="Fork me on GitHub">
+            <i class="fa fa-github"></i>
+            <span class="username">seunggu</span>
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a href="https://www.linkedin.com/pub/ben-centra/47/769/60a" title="Connect with me on LinkedIn">
+            <i class="fa fa-linkedin"></i>
+            <span class="username">Ben Centra</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">A Blog dealing with JavaScript, NodeJS, AngularJS, Ionic, iOS, etc...
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+<script>
+
+  $(document).ready(function() {
+
+    // Syntax highlighting
+    hljs.initHighlightingOnLoad();
+
+    // Header
+    var menuToggle = $('#js-mobile-menu').unbind();
+    $('#js-navigation-menu').removeClass("show");
+    menuToggle.on('click', function(e) {
+      e.preventDefault();
+      $('#js-navigation-menu').slideToggle(function(){
+        if($('#js-navigation-menu').is(':hidden')) {
+          $('#js-navigation-menu').removeAttr('style');
+        }
+      });
+    });
+
+
+  });
+
+</script>
+
+
+
+
+  </body>
+
+</html>

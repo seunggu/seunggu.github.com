@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Javascript this</title>
+  <meta name="description" content="1. 항상 변화하는 this">
+  
+  <meta name="author" content="승구">
+  <meta name="copyright" content="&copy; 승구 2016">
+  
+
+  <!-- External libraries -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/monokai_sublime.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css">
+
+  <!-- Favicon and other icons (made with http://www.favicon-generator.org/) -->
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/assets/icons/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="/assets/icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/assets/icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  <!-- Facebook OGP cards -->
+  <meta property="og:description" content="1. 항상 변화하는 this" />
+  <meta property="og:url" content="http://seunggu.github.io" />
+  <meta property="og:site_name" content="승구 개발 블로그" />
+  <meta property="og:title" content="Javascript this" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="http://seunggu.github.io/assets/black-background.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="322" />
+  <meta property="og:image:height" content="79" />
+  
+
+  
+  <!-- Twitter: card tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Javascript this">
+  <meta name="twitter:description" content="1. 항상 변화하는 this">
+  <meta name="twitter:image" content="http://seunggu.github.io/assets/black-background.png">
+  <meta name="twitter:url" content="http://seunggu.github.io">
+  
+
+  
+
+  <!-- Site styles -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://seunggu.github.io/javascript/2016/08/01/javascript-this-conquer.html">
+  <link rel="alternate" type="application/rss+xml" title="승구 개발 블로그" href="http://seunggu.github.io/feed.xml" />
+</head>
+
+  <body>
+
+    <header class="navigation" role="banner">
+  <div class="navigation-wrapper">
+    <a href="/" class="logo">
+      
+      <img src="/assets/main_logo2.png" alt="승구 개발 블로그">
+      
+    </a>
+    <a href="javascript:void(0)" class="navigation-menu-button black-a" id="js-mobile-menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <nav role="navigation">
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        
+        
+        <li class="nav-link"><a class="black-a" href="/about/">About</a>
+          
+          
+        
+          
+        
+          
+        
+          
+        
+        <li class="nav-link"><a class="black-a" href="/posts/">Posts</a>
+          
+          
+        
+        <li class="nav-link"><a class="black-a" href="/typography/">Typography</a>
+          
+          
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+        <div class="post">
+
+<div class="post-header-container has-cover" style="background-image: url(/assets/black-background.png);">
+  <div class="scrim has-cover">
+    <header class="post-header">
+      <h1 class="title">Javascript this</h1>
+      <p class="info">by <strong>승구</strong></p>
+    </header>
+  </div>
+</div>
+
+<div class="wrapper">
+
+
+
+<section class="post-meta">
+  <div class="post-date">August 1, 2016</div>
+  <div class="post-categories">
+  in 
+    
+    <span>Javascript</span>
+    
+  
+  </div>
+</section>  
+
+<article class="post-content">
+  <h2 id="this">1. 항상 변화하는 this</h2>
+
+<p>Javascript 코드를 작성하다 보면 생각대로 잘 구현도 했는데 결과값이 이상하게 나올 때가 있습니다.
+오늘 포스팅 주제인 <code class="highlighter-rouge">this</code> 때문에 그런 적도 한 두번이 아닌 것 같습니다.
+그 만큼 좀 까다롭고 헷갈리는 javascript의 특징 중 하나입니다.
+특히 동적 언어다 보니 디버깅도 쉽지 않아서 <code class="highlighter-rouge">this</code> 하나 잘못쓰다가 시간을 낭비하는 일이 허다합니다.
+this가 헷갈리고 어렵게 느껴지는 이유가 코드의 문맥에 따라서 <code class="highlighter-rouge">this</code>의 값이 달리지기 때문인데요.
+<strong>하지만, 한번 정리하면 크게 어려울 것도 없습니다.</strong>
+<br /><br /></p>
+
+<h2 id="global-context">2. Global Context</h2>
+
+<p>우선 제일 쉽고 간단한 <code class="highlighter-rouge">Global Context</code>의 this부터 보겠습니다.
+Global context에선 아래 코드와 같이 <strong>global object</strong>을 가르키게 됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span> <span class="o">===</span> <span class="nb">window</span><span class="p">);</span> <span class="c1">// true -web</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span> <span class="o">===</span> <span class="nx">global</span><span class="p">);</span> <span class="c1">// true -node</span>
+
+</code></pre>
+</div>
+<p><br /><br /></p>
+
+<h2 id="function-context-non-strict-mode">3. Function Context (non strict mode)</h2>
+
+<p><code class="highlighter-rouge">Function Context</code> this는 그저 함수 내에서 사용되는 this입니다.
+이제부터 조금 상황에 따라 다르게 this가 변하므로 정리가 필요합니다.
+함수는 보통 대다수의 경우가 호출했을 때의 상황에 따라 this가 변하게 됩니다.
+우선 전역에 함수가 설정되어 있고 그 함수내에 this가 있고 
+전역에서 함수를 호출한다면 this는 global이 됩니다.
+<strong>(정확히 얘기하자면 아래에 나올 object member로써 쓰이지 않으면 참조할 객체가 없고 
+‘strict mode’가 아니기 때문에 항상 this는 어떤 객체든 참조해야 하므로 global를 가지는 것입니다)</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="kd">function</span> <span class="nx">f1</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f1</span><span class="p">()</span> <span class="o">===</span> <span class="nb">window</span><span class="p">);</span> <span class="c1">// true -web</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f1</span><span class="p">()</span> <span class="o">===</span> <span class="nx">global</span><span class="p">);</span> <span class="c1">// true -node</span>
+
+</code></pre>
+</div>
+<p><br /><br /></p>
+
+<h2 id="function-context-strict-mode">4. Function Context (strict mode)</h2>
+
+<p><code class="highlighter-rouge">strict mode</code>에선 약간 다르게 동작합니다.
+기본적으로 <code class="highlighter-rouge">strict mode</code>에선 this가 참조할 객체가 없으면 <strong>undefined</strong>로 나타나게 됩니다.
+(아직 지원하지 않는 브라우저가 있을 수 있습니다)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">f1</span><span class="p">()</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f1</span><span class="p">());</span> <span class="c1">// undefined</span>
+
+</code></pre>
+</div>
+<p><br /><br /></p>
+
+<h2 id="arrow-function">5. Arrow function</h2>
+
+<p>ES6부터 function를 좀 더 표현하기 쉽게된 <code class="highlighter-rouge">Arrow function</code>이 추가되었는데요.
+<code class="highlighter-rouge">Arrow function</code>안의 this은 위의 기존 함수들안의 this와는 조금 다르게 동작합니다.
+기존 함수는 함수 호출에 따라 this가 달라지지만 <code class="highlighter-rouge">Arrow function</code>은 정의할 때의 
+<strong>가장 근접한 context의 this</strong>를 사용하고 언제 어떻게 호출하든 정의할 때의 this로 고정되어 사용됩니다.
+아래 코드처럼 <code class="highlighter-rouge">call, apply, bind</code>를 통해 강제로 this를 변경하여도 그대로 고정된 값이 사용되고,
+<code class="highlighter-rouge">object에 member</code>로 호출하여도 this는 해당 object가 아닌 처음 정의 될때의 global로 적용됩니다.
+<strong>(object member나 call, apply, bind는 아래에 설명되어 있으니 이해가 안되시더라도 넘어가면 됩니다)</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">global</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">arrowFunc</span> <span class="o">=</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arrowFunc</span><span class="p">()</span> <span class="o">===</span> <span class="nx">global</span><span class="p">);</span> <span class="c1">// true</span>
+
+<span class="c1">// object member</span>
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="na">foo</span><span class="p">:</span> <span class="nx">foo</span> <span class="p">};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">()</span> <span class="o">===</span> <span class="nx">global</span><span class="p">);</span> <span class="c1">// true</span>
+
+<span class="c1">// call, apply</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="o">===</span> <span class="nx">global</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="o">===</span> <span class="nx">global</span><span class="p">);</span> <span class="c1">// true</span>
+
+<span class="c1">// bind</span>
+<span class="nx">foo</span> <span class="o">=</span> <span class="nx">foo</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">()</span> <span class="o">===</span> <span class="nx">global</span><span class="p">);</span> <span class="c1">// true</span>
+
+</code></pre>
+</div>
+<p><br /><br /></p>
+
+<h2 id="object-member">6. object member</h2>
+
+<p><code class="highlighter-rouge">객체의 멤버</code>로 함수가 사용되면 호출 시점에서 this는 해당 함수를 <strong>멤버로 가지고 있는 객체</strong>로 지정되게 됩니다.
+주의해야 할 점은 <code class="highlighter-rouge">객체의 멤버</code>로 호출될 때는 this가 위처럼 객체가 되지만,
+그 객체 멤버 함수를 다른 변수로 대입하여 다르게 호출 될 땐 대입된 함수의 호출시점에 따라 달라지게 됩니다.
+아래 코드를 보며 정리하시길 바랍니다
+(아래 코드에선 fn은 Global Context에서 사용되었고 strict mode이므로 undefined!)
+(이해가 안되시면 Function Context를 다시 보시길 바랍니다)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">foo</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">()</span> <span class="o">===</span> <span class="nx">obj</span><span class="p">);</span> <span class="c1">// true</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fn</span><span class="p">()</span> <span class="o">===</span> <span class="nx">obj</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fn</span><span class="p">());</span> <span class="c1">// undefined</span>
+
+</code></pre>
+</div>
+
+<p>그리고 주의 할 점은 <code class="highlighter-rouge">Prototype Chaining</code>을 할 때인데, 생각보다 간단합니다.
+부모 Prototype에 정의된 함수의 this를 사용할 땐, 아래 코드처럼 마치 자신의 멤버함수처럼 this는 <strong>호출한 객체</strong>가 됩니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">parentObj</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">a</span><span class="p">:</span> <span class="s1">'parentA'</span><span class="p">,</span>
+	<span class="na">b</span><span class="p">:</span> <span class="s1">'parentB'</span><span class="p">,</span>
+	<span class="na">printAB</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    	<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
+  	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">parentObj</span><span class="p">.</span><span class="nx">printAB</span><span class="p">);</span> <span class="c1">// parentAparentB</span>
+
+<span class="c1">// parentObj를 prototype 상속하는 childObj 만듬</span>
+<span class="kd">var</span> <span class="nx">childObj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">parentObj</span><span class="p">);</span>
+<span class="nx">childObj</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="s1">'childA'</span><span class="p">;</span>
+<span class="nx">childObj</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="s1">'childB'</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">childObj</span><span class="p">.</span><span class="nx">printAB</span><span class="p">());</span> <span class="c1">// childAchildB</span>
+
+</code></pre>
+</div>
+<p><br /><br /></p>
+
+<h2 id="contructor">7. Contructor</h2>
+
+<p><code class="highlighter-rouge">생성자 함수</code>로 new 연산자를 사용하여 객체를 만드는데요.
+<code class="highlighter-rouge">생성자 함수</code>내에서 사용되는 this는 생성자 함수와 new 연산자의 조합으로 만들어진 객체를 나타냅니다.
+즉 this는 객체가 만들어지고 <strong>초기화될 객체</strong>입니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c1">// 생성될 객체에 변수 초기화</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="s1">'Seunggu'</span><span class="p">,</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="s1">'Jeong'</span><span class="p">,</span>
+	
+	<span class="c1">// 보통 prototype에 함수를 넣지만 편의상 이렇게 표현 했습니다.</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">printName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">seunggu</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">seunggu</span><span class="p">.</span><span class="nx">printName</span><span class="p">());</span> <span class="c1">// 'Jeong Seunggu'</span>
+
+</code></pre>
+</div>
+<p><br /><br /></p>
+
+<h2 id="review-example">8. review, example</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">foo</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+
+	<span class="na">fooArrow</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 시나리오 #1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">()());</span> <span class="c1">// undefined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">()()</span> <span class="o">===</span> <span class="nx">obj</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">fooArrow</span><span class="p">()()</span> <span class="o">===</span> <span class="nx">obj</span><span class="p">);</span> <span class="c1">// true</span>
+
+<span class="c1">// 시나리오 #2</span>
+<span class="kd">var</span> <span class="nx">f1</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">f2</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">fooArrow</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f1</span><span class="p">()());</span> <span class="c1">// undefined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f1</span><span class="p">()()</span> <span class="o">===</span> <span class="nx">obj</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f2</span><span class="p">()());</span> <span class="c1">// undefined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">f2</span><span class="p">()()</span> <span class="o">===</span> <span class="nx">obj</span><span class="p">);</span> <span class="c1">// false</span>
+
+</code></pre>
+</div>
+
+<p>우선 obj는 멤버로 함수를 가지고 있고, 그 함수는 this를 리턴하는 함수를 리턴한다.
+<code class="highlighter-rouge">시나리오 #1</code>의 obj.foo부터 보면 obj.foo가 실행되면 안에 foo 함수가 실행되면서 this를 리턴하는 함수가 반환되는데,
+어떤 객체의 멤버로 함수가 호출된 것이 아니므로 this는 <strong>undefined</strong>가 된다.
+다음은 obj.fooArray가 실행되면서 this를 리턴하는 Arrow function이 반환되는데,
+Arrow function은 가장 인접한 context의 this를 가져오므로 fooArrow context의 this를 가져온다.
+결국 this는 <strong>obj</strong>가 된다.</p>
+
+<p><code class="highlighter-rouge">시나리오 #2</code>에선 우선 obj에 있는 멤버 함수들을 모두 전역의 변수로 대입하여 <code class="highlighter-rouge">시나리오 #1</code>와 같이 코드를 돌려보면,
+obj.foo의 this는 <code class="highlighter-rouge">시나리오 #1</code>과 같은 이유로 <strong>undefined</strong>가 되지만, obj.fooArrow의 this는 <code class="highlighter-rouge">시나리오 #1</code>과 결과가 같지 않습니다.
+헷갈릴 수도 있지만 천천히 분석해 보시면 <strong>당연한 결과</strong>입니다.
+우선 obj.fooArray를 f2 변수로 대입했고 함수는 호출에 따라 this가 변하므로 
+f2가 호출될 땐 객체의 멤버 변수가 아니므로 당연히 <strong>undefined</strong>가 됩니다.
+그리고 Arrow function은 가장 가까운 context의 this를 가져오게 되므로 <strong>undefined</strong>를 가져오게 됩니다.</p>
+
+<h2 id="call-apply-bind">9. 마지막으로, call, apply, bind</h2>
+
+<p>this를 완벽히 마스터하기 위해선 <code class="highlighter-rouge">call, apply, bind</code>까지 이해해야 합니다.
+이 세 함수의 역할은 this를 <strong>명시적으로 변경해주는 역할</strong>입니다.
+세 함수 모두 <strong>Function Prototype</strong>에 존재합니다.
+예제를 통해 확인해보겠습니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">preObj</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">name</span><span class="p">:</span> <span class="s1">'preObj'</span><span class="p">,</span>
+	<span class="na">printAB</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="nx">a</span> <span class="o">+</span> <span class="s1">' '</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">var</span> <span class="nx">afterObj</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">name</span><span class="p">:</span> <span class="s1">'afterObj'</span>
+<span class="p">};</span>
+
+<span class="c1">// call, apply를 이용한 this 대입</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">preObj</span><span class="p">.</span><span class="nx">printAB</span><span class="p">(</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">));</span> <span class="c1">// preObj A B</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">preObj</span><span class="p">.</span><span class="nx">printAB</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">afterObj</span><span class="p">,</span> <span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">));</span> <span class="c1">// afterObj A B</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">preObj</span><span class="p">.</span><span class="nx">printAB</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">afterObj</span><span class="p">,</span> <span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">]));</span> <span class="c1">// afterObj A B</span>
+
+<span class="c1">// bind를 이용한 this 대입</span>
+<span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="nx">preObj</span><span class="p">.</span><span class="nx">printAB</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">afterObj</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">fn</span><span class="p">(</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">));</span> <span class="c1">// afterObj A B</span>
+
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">call, apply</code>를 보시면 첫번째 인자에 this에 대입할 객체를 넣고, 
+두번째 파라미터부터 this를 대입하는 함수의 인자들을 차례대로 넣으면 됩니다.
+<code class="highlighter-rouge">call과 apply</code>의 차이는 인자를 각각 넣느냐 배열로 넣으냐의 차이입니다.</p>
+
+<p><code class="highlighter-rouge">bind</code>는 조금 다른 개념인게 함수를 사용할 때 사용한단 느낌 보단
+함수를 미리 원하는 객체로 this를 바인딩 해놓는 개념입니다.
+코드처럼 <code class="highlighter-rouge">bind</code>를 이용하여 afterObj를 this로 바인딩된 함수를 반환합니다.
+그 함수를 통해 기존의 함수처럼 사용할 수 있습니다.
+<br /><br /></p>
+
+<h2 id="section">10. 정리</h2>
+
+<p>지금까지 this의 다양한 상황에 따른 변화와 this를 수동으로 대체하는 것까지 모두 보았습니다.
+이렇게 한번 this를 정리하면 언제 this가 나오더라도 편하게 분석이 가능해서 좋습니다.
+영어로 된 문서지만 <strong>참고자료</strong>를 통해 한번 읽으셔도 좋을 것 같아 밑에 리스팅해 놓았습니다.
+<br /><br /></p>
+
+<h2 id="section-1">11. 참고자료</h2>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/this">MDN javascript this</a></li>
+  <li><a href="http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/">Understand JavaScript’s “this” With Clarity, and Master It</a></li>
+</ul>
+
+
+</article>
+
+
+
+<section class="rss">
+  <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+</section>
+
+<section class="share">
+  <span>Share: </span>
+  
+    
+    
+      <a href="//twitter.com/share?text=Javascript+this&url=http://seunggu.github.io/javascript/2016/08/01/javascript-this-conquer.html&via=imaster0209"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=255');return false;">
+        <i class="fa fa-twitter-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+      <a href="//www.facebook.com/sharer.php?t=Javascript+this&u=http://seunggu.github.io/javascript/2016/08/01/javascript-this-conquer.html"
+        onclick="window.open(this.href, 'facebook-share', 'width=550,height=255');return false;">
+        <i class="fa fa-facebook-square fa-lg"></i>
+      </a>
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+  
+</section>
+
+
+
+
+<section class="disqus">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'seunggu';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+</div>
+</div>
+
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h3 class="footer-heading">승구 개발 블로그</h3>
+
+    <div class="site-navigation">
+
+      <p><strong>Site Map</strong></p>
+      <ul class="pages">
+        
+        
+        <li class="nav-link"><a href="/about/">About</a>
+          
+          
+        
+          
+        
+          
+        
+          
+        
+        <li class="nav-link"><a href="/posts/">Posts</a>
+          
+          
+        
+        <li class="nav-link"><a href="/typography/">Typography</a>
+          
+          
+      </ul>
+    </div>
+
+    <div class="site-contact">
+
+      <p><strong>Contact</strong></p>
+      <ul class="social-media-list">
+        <li>
+          <a href="mailto:imaster0029@naver.com">
+            <i class="fa fa-envelope-o"></i>
+            <span class="username">imaster0029@naver.com</span>
+          </a>
+        </li>
+
+        
+        
+        <li>
+          <a href="https://twitter.com/imaster0209" title="Follow me on Twitter">
+            <i class="fa fa-twitter"></i>
+            <span class="username">imaster0209</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
+        <li>
+          <a href="https://github.com/seunggu" title="Fork me on GitHub">
+            <i class="fa fa-github"></i>
+            <span class="username">seunggu</span>
+          </a>
+        </li>
+        
+        
+        
+        <li>
+          <a href="https://www.linkedin.com/pub/ben-centra/47/769/60a" title="Connect with me on LinkedIn">
+            <i class="fa fa-linkedin"></i>
+            <span class="username">Ben Centra</span>
+          </a>
+        </li>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+      </ul>
+    </div>
+
+    <div class="site-signature">
+      <p class="rss-subscribe text"><strong>Subscribe <a href="/feed.xml">via RSS</a></strong></p>
+      <p class="text">A Blog dealing with JavaScript, NodeJS, AngularJS, Ionic, iOS, etc...
+</p>
+    </div>
+
+  </div>
+
+</footer>
+
+<!-- Scripts -->
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js"></script>
+<script>
+
+  $(document).ready(function() {
+
+    // Syntax highlighting
+    hljs.initHighlightingOnLoad();
+
+    // Header
+    var menuToggle = $('#js-mobile-menu').unbind();
+    $('#js-navigation-menu').removeClass("show");
+    menuToggle.on('click', function(e) {
+      e.preventDefault();
+      $('#js-navigation-menu').slideToggle(function(){
+        if($('#js-navigation-menu').is(':hidden')) {
+          $('#js-navigation-menu').removeAttr('style');
+        }
+      });
+    });
+
+
+  });
+
+</script>
+
+
+
+
+  </body>
+
+</html>
