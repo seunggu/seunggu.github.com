@@ -77,14 +77,16 @@ return requestSignatureHistoryArray;   }
 
 <p>}</p>
 
-<p>/**
- * 참여자 배열에서 작성인을 찾아서 반환하는 메서드
- *
- * @param participants - 참여자 배열
- * @returns {*}
+<p>/**</p>
+<ul>
+  <li>참여자 배열에서 작성인을 찾아서 반환하는 메서드
+ *</li>
+  <li>@param participants - 참여자 배열</li>
+  <li>@returns {*}
  */
 function getWriter(participants) {
-  var i, length = participants.length;</p>
+  var i, length = participants.length;</li>
+</ul>
 
 <p>for (i = 0; i &lt; length; i += 1) {
     if (participants[i].role === ‘작성인’) {

@@ -136,7 +136,7 @@
 </section>  
 
 <article class="post-content">
-  <h2 id="this">1. 항상 변화하는 this</h2>
+  <h2 id="1-항상-변화하는-this">1. 항상 변화하는 this</h2>
 
 <p>Javascript 코드를 작성하다 보면 생각대로 잘 구현도 했는데 결과값이 이상하게 나올 때가 있습니다.
 오늘 포스팅 주제인 <code class="highlighter-rouge">this</code> 때문에 그런 적도 한 두번이 아닌 것 같습니다.
@@ -146,12 +146,12 @@ this가 헷갈리고 어렵게 느껴지는 이유가 코드의 문맥에 따라
 <strong>하지만, 한번 정리하면 크게 어려울 것도 없습니다.</strong>
 <br /><br /></p>
 
-<h2 id="global-context">2. Global Context</h2>
+<h2 id="2-global-context">2. Global Context</h2>
 
 <p>우선 제일 쉽고 간단한 <code class="highlighter-rouge">Global Context</code>의 this부터 보겠습니다.
 Global context에선 아래 코드와 같이 <strong>global object</strong>을 가르키게 됩니다.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span> <span class="o">===</span> <span class="nb">window</span><span class="p">);</span> <span class="c1">// true -web</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span> <span class="o">===</span> <span class="nx">global</span><span class="p">);</span> <span class="c1">// true -node</span>
 
@@ -159,7 +159,7 @@ Global context에선 아래 코드와 같이 <strong>global object</strong>을 �
 </div>
 <p><br /><br /></p>
 
-<h2 id="function-context-non-strict-mode">3. Function Context (non strict mode)</h2>
+<h2 id="3-function-context-non-strict-mode">3. Function Context (non strict mode)</h2>
 
 <p><code class="highlighter-rouge">Function Context</code> this는 그저 함수 내에서 사용되는 this입니다.
 이제부터 조금 상황에 따라 다르게 this가 변하므로 정리가 필요합니다.
@@ -169,7 +169,7 @@ Global context에선 아래 코드와 같이 <strong>global object</strong>을 �
 <strong>(정확히 얘기하자면 아래에 나올 object member로써 쓰이지 않으면 참조할 객체가 없고 
 ‘strict mode’가 아니기 때문에 항상 this는 어떤 객체든 참조해야 하므로 global를 가지는 것입니다)</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
 <span class="kd">function</span> <span class="nx">f1</span><span class="p">()</span> <span class="p">{</span>
 	<span class="k">return</span> <span class="k">this</span><span class="p">;</span>
 <span class="p">}</span>
@@ -181,13 +181,13 @@ Global context에선 아래 코드와 같이 <strong>global object</strong>을 �
 </div>
 <p><br /><br /></p>
 
-<h2 id="function-context-strict-mode">4. Function Context (strict mode)</h2>
+<h2 id="4-function-context-strict-mode">4. Function Context (strict mode)</h2>
 
 <p><code class="highlighter-rouge">strict mode</code>에선 약간 다르게 동작합니다.
 기본적으로 <code class="highlighter-rouge">strict mode</code>에선 this가 참조할 객체가 없으면 <strong>undefined</strong>로 나타나게 됩니다.
 (아직 지원하지 않는 브라우저가 있을 수 있습니다)</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
 <span class="s1">'use strict'</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">f1</span><span class="p">()</span> <span class="p">{</span>
@@ -200,7 +200,7 @@ Global context에선 아래 코드와 같이 <strong>global object</strong>을 �
 </div>
 <p><br /><br /></p>
 
-<h2 id="arrow-function">5. Arrow function</h2>
+<h2 id="5-arrow-function">5. Arrow function</h2>
 
 <p>ES6부터 function를 좀 더 표현하기 쉽게된 <code class="highlighter-rouge">Arrow function</code>이 추가되었는데요.
 <code class="highlighter-rouge">Arrow function</code>안의 this은 위의 기존 함수들안의 this와는 조금 다르게 동작합니다.
@@ -210,7 +210,7 @@ Global context에선 아래 코드와 같이 <strong>global object</strong>을 �
 <code class="highlighter-rouge">object에 member</code>로 호출하여도 this는 해당 object가 아닌 처음 정의 될때의 global로 적용됩니다.
 <strong>(object member나 call, apply, bind는 아래에 설명되어 있으니 이해가 안되시더라도 넘어가면 됩니다)</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
 <span class="s1">'use strict'</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">global</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
@@ -233,7 +233,7 @@ Global context에선 아래 코드와 같이 <strong>global object</strong>을 �
 </div>
 <p><br /><br /></p>
 
-<h2 id="object-member">6. object member</h2>
+<h2 id="6-object-member">6. object member</h2>
 
 <p><code class="highlighter-rouge">객체의 멤버</code>로 함수가 사용되면 호출 시점에서 this는 해당 함수를 <strong>멤버로 가지고 있는 객체</strong>로 지정되게 됩니다.
 주의해야 할 점은 <code class="highlighter-rouge">객체의 멤버</code>로 호출될 때는 this가 위처럼 객체가 되지만,
@@ -242,7 +242,7 @@ Global context에선 아래 코드와 같이 <strong>global object</strong>을 �
 (아래 코드에선 fn은 Global Context에서 사용되었고 strict mode이므로 undefined!)
 (이해가 안되시면 Function Context를 다시 보시길 바랍니다)</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
 <span class="s1">'use strict'</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
@@ -263,7 +263,7 @@ Global context에선 아래 코드와 같이 <strong>global object</strong>을 �
 <p>그리고 주의 할 점은 <code class="highlighter-rouge">Prototype Chaining</code>을 할 때인데, 생각보다 간단합니다.
 부모 Prototype에 정의된 함수의 this를 사용할 땐, 아래 코드처럼 마치 자신의 멤버함수처럼 this는 <strong>호출한 객체</strong>가 됩니다.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
 <span class="s1">'use strict'</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">parentObj</span> <span class="o">=</span> <span class="p">{</span>
@@ -287,13 +287,13 @@ Global context에선 아래 코드와 같이 <strong>global object</strong>을 �
 </div>
 <p><br /><br /></p>
 
-<h2 id="contructor">7. Contructor</h2>
+<h2 id="7-contructor">7. Contructor</h2>
 
 <p><code class="highlighter-rouge">생성자 함수</code>로 new 연산자를 사용하여 객체를 만드는데요.
 <code class="highlighter-rouge">생성자 함수</code>내에서 사용되는 this는 생성자 함수와 new 연산자의 조합으로 만들어진 객체를 나타냅니다.
 즉 this는 객체가 만들어지고 <strong>초기화될 객체</strong>입니다.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
 <span class="kd">function</span> <span class="nx">Person</span><span class="p">()</span> <span class="p">{</span>
 	<span class="c1">// 생성될 객체에 변수 초기화</span>
 	<span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="s1">'Seunggu'</span><span class="p">,</span>
@@ -312,9 +312,9 @@ Global context에선 아래 코드와 같이 <strong>global object</strong>을 �
 </div>
 <p><br /><br /></p>
 
-<h2 id="review-example">8. review, example</h2>
+<h2 id="8-review-example">8. review, example</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
 <span class="s1">'use strict'</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
@@ -360,14 +360,14 @@ obj.foo의 this는 <code class="highlighter-rouge">시나리오 #1</code>과 같
 f2가 호출될 땐 객체의 멤버 변수가 아니므로 당연히 <strong>undefined</strong>가 됩니다.
 그리고 Arrow function은 가장 가까운 context의 this를 가져오게 되므로 <strong>undefined</strong>를 가져오게 됩니다.</p>
 
-<h2 id="call-apply-bind">9. 마지막으로, call, apply, bind</h2>
+<h2 id="9-마지막으로-call-apply-bind">9. 마지막으로, call, apply, bind</h2>
 
 <p>this를 완벽히 마스터하기 위해선 <code class="highlighter-rouge">call, apply, bind</code>까지 이해해야 합니다.
 이 세 함수의 역할은 this를 <strong>명시적으로 변경해주는 역할</strong>입니다.
 세 함수 모두 <strong>Function Prototype</strong>에 존재합니다.
 예제를 통해 확인해보겠습니다.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
 <span class="s1">'use strict'</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">preObj</span> <span class="o">=</span> <span class="p">{</span>
@@ -403,14 +403,14 @@ f2가 호출될 땐 객체의 멤버 변수가 아니므로 당연히 <strong>un
 그 함수를 통해 기존의 함수처럼 사용할 수 있습니다.
 <br /><br /></p>
 
-<h2 id="section">10. 정리</h2>
+<h2 id="10-정리">10. 정리</h2>
 
 <p>지금까지 this의 다양한 상황에 따른 변화와 this를 수동으로 대체하는 것까지 모두 보았습니다.
 이렇게 한번 this를 정리하면 언제 this가 나오더라도 편하게 분석이 가능해서 좋습니다.
 영어로 된 문서지만 <strong>참고자료</strong>를 통해 한번 읽으셔도 좋을 것 같아 밑에 리스팅해 놓았습니다.
 <br /><br /></p>
 
-<h2 id="section-1">11. 참고자료</h2>
+<h2 id="11-참고자료">11. 참고자료</h2>
 
 <ul>
   <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/this">MDN javascript this</a></li>

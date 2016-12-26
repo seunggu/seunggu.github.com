@@ -6,13 +6,13 @@
 </description>
     <link>http://seunggu.github.io/</link>
     <atom:link href="http://seunggu.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 02 Aug 2016 13:36:09 +0900</pubDate>
-    <lastBuildDate>Tue, 02 Aug 2016 13:36:09 +0900</lastBuildDate>
-    <generator>Jekyll v3.1.2</generator>
+    <pubDate>Mon, 26 Dec 2016 09:43:58 +0900</pubDate>
+    <lastBuildDate>Mon, 26 Dec 2016 09:43:58 +0900</lastBuildDate>
+    <generator>Jekyll v3.3.1</generator>
     
       <item>
         <title>Javascript this</title>
-        <description>&lt;h2 id=&quot;this&quot;&gt;1. 항상 변화하는 this&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;1-항상-변화하는-this&quot;&gt;1. 항상 변화하는 this&lt;/h2&gt;
 
 &lt;p&gt;Javascript 코드를 작성하다 보면 생각대로 잘 구현도 했는데 결과값이 이상하게 나올 때가 있습니다.
 오늘 포스팅 주제인 &lt;code class=&quot;highlighter-rouge&quot;&gt;this&lt;/code&gt; 때문에 그런 적도 한 두번이 아닌 것 같습니다.
@@ -22,12 +22,12 @@ this가 헷갈리고 어렵게 느껴지는 이유가 코드의 문맥에 따라
 &lt;strong&gt;하지만, 한번 정리하면 크게 어려울 것도 없습니다.&lt;/strong&gt;
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;global-context&quot;&gt;2. Global Context&lt;/h2&gt;
+&lt;h2 id=&quot;2-global-context&quot;&gt;2. Global Context&lt;/h2&gt;
 
 &lt;p&gt;우선 제일 쉽고 간단한 &lt;code class=&quot;highlighter-rouge&quot;&gt;Global Context&lt;/code&gt;의 this부터 보겠습니다.
 Global context에선 아래 코드와 같이 &lt;strong&gt;global object&lt;/strong&gt;을 가르키게 됩니다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// true -web&lt;/span&gt;
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// true -node&lt;/span&gt;
 
@@ -35,7 +35,7 @@ Global context에선 아래 코드와 같이 &lt;strong&gt;global object&lt;/str
 &lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;function-context-non-strict-mode&quot;&gt;3. Function Context (non strict mode)&lt;/h2&gt;
+&lt;h2 id=&quot;3-function-context-non-strict-mode&quot;&gt;3. Function Context (non strict mode)&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Function Context&lt;/code&gt; this는 그저 함수 내에서 사용되는 this입니다.
 이제부터 조금 상황에 따라 다르게 this가 변하므로 정리가 필요합니다.
@@ -45,7 +45,7 @@ Global context에선 아래 코드와 같이 &lt;strong&gt;global object&lt;/str
 &lt;strong&gt;(정확히 얘기하자면 아래에 나올 object member로써 쓰이지 않으면 참조할 객체가 없고 
 ‘strict mode’가 아니기 때문에 항상 this는 어떤 객체든 참조해야 하므로 global를 가지는 것입니다)&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -57,14 +57,14 @@ Global context에선 아래 코드와 같이 &lt;strong&gt;global object&lt;/str
 &lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;function-context-strict-mode&quot;&gt;4. Function Context (strict mode)&lt;/h2&gt;
+&lt;h2 id=&quot;4-function-context-strict-mode&quot;&gt;4. Function Context (strict mode)&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;strict mode&lt;/code&gt;에선 약간 다르게 동작합니다.
 기본적으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;strict mode&lt;/code&gt;에선 this가 참조할 객체가 없으면 &lt;strong&gt;undefined&lt;/strong&gt;로 나타나게 됩니다.
 (아직 지원하지 않는 브라우저가 있을 수 있습니다)&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;s1&quot;&gt;&#39;use strict&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;s1&quot;&gt;'use strict'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;f1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -76,7 +76,7 @@ Global context에선 아래 코드와 같이 &lt;strong&gt;global object&lt;/str
 &lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;arrow-function&quot;&gt;5. Arrow function&lt;/h2&gt;
+&lt;h2 id=&quot;5-arrow-function&quot;&gt;5. Arrow function&lt;/h2&gt;
 
 &lt;p&gt;ES6부터 function를 좀 더 표현하기 쉽게된 &lt;code class=&quot;highlighter-rouge&quot;&gt;Arrow function&lt;/code&gt;이 추가되었는데요.
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Arrow function&lt;/code&gt;안의 this은 위의 기존 함수들안의 this와는 조금 다르게 동작합니다.
@@ -86,8 +86,8 @@ Global context에선 아래 코드와 같이 &lt;strong&gt;global object&lt;/str
 &lt;code class=&quot;highlighter-rouge&quot;&gt;object에 member&lt;/code&gt;로 호출하여도 this는 해당 object가 아닌 처음 정의 될때의 global로 적용됩니다.
 &lt;strong&gt;(object member나 call, apply, bind는 아래에 설명되어 있으니 이해가 안되시더라도 넘어가면 됩니다)&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;s1&quot;&gt;&#39;use strict&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;s1&quot;&gt;'use strict'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;global&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arrowFunc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
@@ -109,7 +109,7 @@ Global context에선 아래 코드와 같이 &lt;strong&gt;global object&lt;/str
 &lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;object-member&quot;&gt;6. object member&lt;/h2&gt;
+&lt;h2 id=&quot;6-object-member&quot;&gt;6. object member&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;객체의 멤버&lt;/code&gt;로 함수가 사용되면 호출 시점에서 this는 해당 함수를 &lt;strong&gt;멤버로 가지고 있는 객체&lt;/strong&gt;로 지정되게 됩니다.
 주의해야 할 점은 &lt;code class=&quot;highlighter-rouge&quot;&gt;객체의 멤버&lt;/code&gt;로 호출될 때는 this가 위처럼 객체가 되지만,
@@ -118,8 +118,8 @@ Global context에선 아래 코드와 같이 &lt;strong&gt;global object&lt;/str
 (아래 코드에선 fn은 Global Context에서 사용되었고 strict mode이므로 undefined!)
 (이해가 안되시면 Function Context를 다시 보시길 바랍니다)&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;s1&quot;&gt;&#39;use strict&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;s1&quot;&gt;'use strict'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -139,12 +139,12 @@ Global context에선 아래 코드와 같이 &lt;strong&gt;global object&lt;/str
 &lt;p&gt;그리고 주의 할 점은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Prototype Chaining&lt;/code&gt;을 할 때인데, 생각보다 간단합니다.
 부모 Prototype에 정의된 함수의 this를 사용할 땐, 아래 코드처럼 마치 자신의 멤버함수처럼 this는 &lt;strong&gt;호출한 객체&lt;/strong&gt;가 됩니다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;s1&quot;&gt;&#39;use strict&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;s1&quot;&gt;'use strict'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;parentObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;parentA&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;parentB&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'parentA'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'parentB'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 	&lt;span class=&quot;na&quot;&gt;printAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
   	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -154,8 +154,8 @@ Global context에선 아래 코드와 같이 &lt;strong&gt;global object&lt;/str
 
 &lt;span class=&quot;c1&quot;&gt;// parentObj를 prototype 상속하는 childObj 만듬&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;childObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parentObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;childObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;childA&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;childObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;childB&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;childObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'childA'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;childObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'childB'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;childObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// childAchildB&lt;/span&gt;
 
@@ -163,35 +163,35 @@ Global context에선 아래 코드와 같이 &lt;strong&gt;global object&lt;/str
 &lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;contructor&quot;&gt;7. Contructor&lt;/h2&gt;
+&lt;h2 id=&quot;7-contructor&quot;&gt;7. Contructor&lt;/h2&gt;
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;생성자 함수&lt;/code&gt;로 new 연산자를 사용하여 객체를 만드는데요.
 &lt;code class=&quot;highlighter-rouge&quot;&gt;생성자 함수&lt;/code&gt;내에서 사용되는 this는 생성자 함수와 new 연산자의 조합으로 만들어진 객체를 나타냅니다.
 즉 this는 객체가 만들어지고 &lt;strong&gt;초기화될 객체&lt;/strong&gt;입니다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 	&lt;span class=&quot;c1&quot;&gt;// 생성될 객체에 변수 초기화&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;firstName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;Seunggu&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lastName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;Jeong&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;firstName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Seunggu'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lastName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Jeong'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 	
 	&lt;span class=&quot;c1&quot;&gt;// 보통 prototype에 함수를 넣지만 편의상 이렇게 표현 했습니다.&lt;/span&gt;
 	&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lastName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39; &#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;firstName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lastName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;firstName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;seunggu&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;seunggu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &#39;Jeong Seunggu&#39;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;seunggu&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 'Jeong Seunggu'&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;review-example&quot;&gt;8. review, example&lt;/h2&gt;
+&lt;h2 id=&quot;8-review-example&quot;&gt;8. review, example&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;s1&quot;&gt;&#39;use strict&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;s1&quot;&gt;'use strict'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
 	&lt;span class=&quot;na&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -236,35 +236,35 @@ obj.foo의 this는 &lt;code class=&quot;highlighter-rouge&quot;&gt;시나리오 
 f2가 호출될 땐 객체의 멤버 변수가 아니므로 당연히 &lt;strong&gt;undefined&lt;/strong&gt;가 됩니다.
 그리고 Arrow function은 가장 가까운 context의 this를 가져오게 되므로 &lt;strong&gt;undefined&lt;/strong&gt;를 가져오게 됩니다.&lt;/p&gt;
 
-&lt;h2 id=&quot;call-apply-bind&quot;&gt;9. 마지막으로, call, apply, bind&lt;/h2&gt;
+&lt;h2 id=&quot;9-마지막으로-call-apply-bind&quot;&gt;9. 마지막으로, call, apply, bind&lt;/h2&gt;
 
 &lt;p&gt;this를 완벽히 마스터하기 위해선 &lt;code class=&quot;highlighter-rouge&quot;&gt;call, apply, bind&lt;/code&gt;까지 이해해야 합니다.
 이 세 함수의 역할은 this를 &lt;strong&gt;명시적으로 변경해주는 역할&lt;/strong&gt;입니다.
 세 함수 모두 &lt;strong&gt;Function Prototype&lt;/strong&gt;에 존재합니다.
 예제를 통해 확인해보겠습니다.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;s1&quot;&gt;&#39;use strict&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;s1&quot;&gt;'use strict'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;preObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;preObj&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'preObj'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 	&lt;span class=&quot;na&quot;&gt;printAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39; &#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39; &#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;' '&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
 
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;afterObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-	&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;afterObj&#39;&lt;/span&gt;
+	&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'afterObj'&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;// call, apply를 이용한 this 대입&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;A&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;B&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// preObj A B&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;afterObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;A&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;B&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// afterObj A B&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;afterObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;A&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;B&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// afterObj A B&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'B'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// preObj A B&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;afterObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'B'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// afterObj A B&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;afterObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'B'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// afterObj A B&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;// bind를 이용한 this 대입&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;preObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printAB&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;afterObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;A&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;B&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// afterObj A B&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'A'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'B'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// afterObj A B&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -279,14 +279,14 @@ f2가 호출될 땐 객체의 멤버 변수가 아니므로 당연히 &lt;strong
 그 함수를 통해 기존의 함수처럼 사용할 수 있습니다.
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;10. 정리&lt;/h2&gt;
+&lt;h2 id=&quot;10-정리&quot;&gt;10. 정리&lt;/h2&gt;
 
 &lt;p&gt;지금까지 this의 다양한 상황에 따른 변화와 this를 수동으로 대체하는 것까지 모두 보았습니다.
 이렇게 한번 this를 정리하면 언제 this가 나오더라도 편하게 분석이 가능해서 좋습니다.
 영어로 된 문서지만 &lt;strong&gt;참고자료&lt;/strong&gt;를 통해 한번 읽으셔도 좋을 것 같아 밑에 리스팅해 놓았습니다.
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;11. 참고자료&lt;/h2&gt;
+&lt;h2 id=&quot;11-참고자료&quot;&gt;11. 참고자료&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/this&quot;&gt;MDN javascript this&lt;/a&gt;&lt;/li&gt;
@@ -309,7 +309,7 @@ f2가 호출될 땐 객체의 멤버 변수가 아니므로 당연히 &lt;strong
     
       <item>
         <title>Node.js에 대한 고찰과 도입 </title>
-        <description>&lt;h2 id=&quot;nodejs-&quot;&gt;1. 최근 유명 기업들은 왜 Node.js 도입하는가&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;1-최근-유명-기업들은-왜-nodejs-도입하는가&quot;&gt;1. 최근 유명 기업들은 왜 Node.js 도입하는가&lt;/h2&gt;
 
 &lt;p&gt;최근 많은 해외 유명 기업들이 &lt;code class=&quot;highlighter-rouge&quot;&gt;Node.js&lt;/code&gt;를 사용하고 있다는 걸 들어보신 적이 있으실겁니다.
 그리고 점차 그 추세가 증가하고 있습니다.
@@ -321,7 +321,7 @@ f2가 호출될 땐 객체의 멤버 변수가 아니므로 당연히 &lt;strong
 (우선 기업들이 도입을 결정한 이유에는 장점만 언급한 경우가 많고, 후에 단점들을 함께 얘기하며 도입시 고려사항을 정리하겠습니다)
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;linkedin--&quot;&gt;2. LinkedIn, 높은 효율성&lt;/h2&gt;
+&lt;h2 id=&quot;2-linkedin-높은-효율성&quot;&gt;2. LinkedIn, 높은 효율성&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;-  &lt;strong&gt;LinkedIn&lt;/strong&gt;&lt;br /&gt;
@@ -337,7 +337,7 @@ Node.js는 IO작업을 요청하고 다른 일을 하고 요청한 IO작업이 �
 그래서 보통 Node의 장점에 &lt;a href=&quot;http://www.kegel.com/c10k.html&quot;&gt;c10k problem&lt;/a&gt;에 대해 최적화 되어 있음을 많이 얘기합니다.
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;paypal--netfilx--&quot;&gt;3. PayPal &amp;amp; Netfilx, 높은 생산성&lt;/h2&gt;
+&lt;h2 id=&quot;3-paypal--netfilx-높은-생산성&quot;&gt;3. PayPal &amp;amp; Netfilx, 높은 생산성&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;- &lt;strong&gt;PayPal&lt;/strong&gt;&lt;br /&gt;
@@ -356,7 +356,7 @@ Node로 개발을 하는 FullStack 개발자가 많은 것도 사실입니다.
 많은 모듈들이 사용가능함에 따라 Node 생태계에 들어오는 장벽이 많이 부서졌다고 생각합니다.
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;4. 기타 도입시의 장점&lt;/h2&gt;
+&lt;h2 id=&quot;4-기타-도입시의-장점&quot;&gt;4. 기타 도입시의 장점&lt;/h2&gt;
 
 &lt;p&gt;위에서 크게 두가지의 장점을 언급했는데요, 앞처럼 큰 장점은 아니지만 간단한 &lt;code class=&quot;highlighter-rouge&quot;&gt;(Web)Socket&lt;/code&gt;를 구현할 때도 좋습니다.
 Node.js를 한번 경험해보셨으면 &lt;a href=&quot;http://socket.io&quot;&gt;Socket.io&lt;/a&gt;라고 많이 아실거라 생각합니다.
@@ -369,7 +369,7 @@ Javascript가 &lt;a href=&quot;https://en.wikipedia.org/wiki/Continuation-passin
 &lt;a href=&quot;http://es6-features.org/#Constants&quot;&gt;ES6&lt;/a&gt;를 지원하므로 예전의 문제였던 가독성도 더 좋아졌습니다.
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;5. 도입시 꼭 고려해야할 단점&lt;/h2&gt;
+&lt;h2 id=&quot;5-도입시-꼭-고려해야할-단점&quot;&gt;5. 도입시 꼭 고려해야할 단점&lt;/h2&gt;
 
 &lt;p&gt;위에 이야기들은 모두 Node의 장점들을 나열 하였는데요.
 이제 보여드릴 단점 때문에, Node.js의 도입이 이루어지지 않는 경우가 많습니다.
@@ -388,7 +388,7 @@ Javascript가 &lt;a href=&quot;https://en.wikipedia.org/wiki/Continuation-passin
 이메일이나 문자 정도는 해외 서비스를 사용한다고 하지만, 본인인증관련해서는 국내 서비스를 사용할 수 밖에 없으니 생각보다 큰 걸림돌입니다.
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;6. 개인적인 도입가이드&lt;/h2&gt;
+&lt;h2 id=&quot;6-개인적인-도입가이드&quot;&gt;6. 개인적인 도입가이드&lt;/h2&gt;
 
 &lt;p&gt;저의 개인적인 생각으론 Node.js를 &lt;strong&gt;우호적&lt;/strong&gt;으로 바라보고 있습니다. &lt;strong&gt;높은 효율성과 생산성&lt;/strong&gt; 때문인데요.
 하지만, &lt;code class=&quot;highlighter-rouge&quot;&gt;Node.js&lt;/code&gt;를 도입해서 효율을 끌어낼 수 있는 상황과 오히려 반대인 상황을 잘 판단하셔야 합니다.
@@ -401,7 +401,7 @@ Node.js는 &lt;strong&gt;장단점이 확실&lt;/strong&gt;하고 잘 사용해�
 확실히 이런 장단점이 존재하니 잘 판단하셔서 도입을 하시면 좋은 결과를 낼 수 있을 것 같습니다.
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;section-3&quot;&gt;7. 장점 정리&lt;/h2&gt;
+&lt;h2 id=&quot;7-장점-정리&quot;&gt;7. 장점 정리&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;인프라를 적게 사용하는 높은 효율성 == 비용 절감&lt;/li&gt;
@@ -414,7 +414,7 @@ Node.js는 &lt;strong&gt;장단점이 확실&lt;/strong&gt;하고 잘 사용해�
 &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;section-4&quot;&gt;8. 단점 정리&lt;/h2&gt;
+&lt;h2 id=&quot;8-단점-정리&quot;&gt;8. 단점 정리&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;cpu 작업에 약함&lt;/li&gt;
@@ -424,7 +424,7 @@ Node.js는 &lt;strong&gt;장단점이 확실&lt;/strong&gt;하고 잘 사용해�
 &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;section-5&quot;&gt;9. 참고자료&lt;/h2&gt;
+&lt;h2 id=&quot;9-참고자료&quot;&gt;9. 참고자료&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://risingstack.com/nodejs-is-enterprise-ready?utm_source=how-enterprises-benefit-from-nodejs&amp;amp;utm_medium=rsblog&amp;amp;utm_campaign=whitepaper&quot;&gt;Node.js is Enterprise Ready&lt;/a&gt;&lt;/li&gt;
@@ -449,7 +449,7 @@ Node.js는 &lt;strong&gt;장단점이 확실&lt;/strong&gt;하고 잘 사용해�
     
       <item>
         <title>S3 Versioning에 대해 알아보기</title>
-        <description>&lt;h2 id=&quot;s3-versioning&quot;&gt;1. S3 Versioning&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;1-s3-versioning&quot;&gt;1. S3 Versioning&lt;/h2&gt;
 
 &lt;p&gt;최근에 S3을 주로 사용하는 프로젝트를 진행하고 있습니다.
 비지니스 로직에 필요한 부분이 같은 파일(같은 S3 key를 가지는 파일)을 조금씩 수정하여 S3에 저장하는
@@ -460,7 +460,7 @@ Node.js는 &lt;strong&gt;장단점이 확실&lt;/strong&gt;하고 잘 사용해�
 생각해볼만한 좋은 기능입니다.
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;version-id&quot;&gt;2. Version id&lt;/h2&gt;
+&lt;h2 id=&quot;2-version-id&quot;&gt;2. Version id&lt;/h2&gt;
 
 &lt;p&gt;S3에 Bucket은 기본적으로 Versioning이 켜지지 않은 상태로 되어있고 
 Versioning은 &lt;strong&gt;Bucket 단위&lt;/strong&gt;로만 켜고 끌 수 있습니다.
@@ -479,7 +479,7 @@ Versioning을 키고 Object를 업로드 할 경우에 &lt;code class=&quot;high
 (예를 들면 Git의 &lt;strong&gt;commit hash&lt;/strong&gt;와 비슷하다고 볼 수 있습니다.)
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;current-vs-noncurrent&quot;&gt;3. current vs noncurrent&lt;/h2&gt;
+&lt;h2 id=&quot;3-current-vs-noncurrent&quot;&gt;3. current vs noncurrent&lt;/h2&gt;
 
 &lt;p&gt;S3 Versioning은 이 version id를 가지고 Object들을 관리하게 됩니다.
 기존에 파일을 하나 업로드한 뒤 S3 Key가 동일하도록 같은 이름의 파일을 다시 업로드 하면
@@ -494,7 +494,7 @@ S3 Key를 이용하여 Object를 불러오면 &lt;code class=&quot;highlighter-r
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;delete-marker&quot;&gt;4. Delete Marker&lt;/h2&gt;
+&lt;h2 id=&quot;4-delete-marker&quot;&gt;4. Delete Marker&lt;/h2&gt;
 
 &lt;p&gt;당연히 Versioning을 이용하면 삭제된 Object도 복구 할 수 있습니다.
 이런 기능이 가능한 이유는 Versioning을 켜놓았을 경우 S3는 해당 Object를 삭제 하지 않습니다.
@@ -509,7 +509,7 @@ S3 Key를 이용하여 Object를 불러오면 &lt;code class=&quot;highlighter-r
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;lifecycle-configuration-for-a-bucket-with-versioning&quot;&gt;5. Lifecycle Configuration for a Bucket with Versioning&lt;/h2&gt;
+&lt;h2 id=&quot;5-lifecycle-configuration-for-a-bucket-with-versioning&quot;&gt;5. Lifecycle Configuration for a Bucket with Versioning&lt;/h2&gt;
 
 &lt;p&gt;기본적으로 S3는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Lifecyle Configuration&lt;/code&gt;을 지원합니다.
 간단한 예를 들면, 만약 프로젝트에서 S3에 Object를 생성하고 
@@ -526,7 +526,7 @@ S3는 저장된 용량에 따라 월비용을 내야되기 때문에
 (Lifecycle에 대한 내용은 이 글에서 주제에 벗어나므로 참고자료에 링크 걸어 두었습니다)
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;6. 장점&lt;/h2&gt;
+&lt;h2 id=&quot;6-장점&quot;&gt;6. 장점&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;version에 따른 Lifecycle Configuration이 가능하다.&lt;/li&gt;
@@ -537,7 +537,7 @@ Object를 삭제할 때 일일이 찾아서 삭제 하지않고 한번에 삭제
 &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;7. 단점&lt;/h2&gt;
+&lt;h2 id=&quot;7-단점&quot;&gt;7. 단점&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;아무래도 널리 사용되는 S3의 기능이 아니다 보니 다른 개발자가 와서 일을 할 시에 배워야한다.&lt;/li&gt;
@@ -545,7 +545,7 @@ Object를 삭제할 때 일일이 찾아서 삭제 하지않고 한번에 삭제
 &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;8. 참고자료&lt;/h2&gt;
+&lt;h2 id=&quot;8-참고자료&quot;&gt;8. 참고자료&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectVersioning.html&quot;&gt;AWS 공식 문서(Object Lifecycle Management)&lt;/a&gt;&lt;/li&gt;
@@ -566,30 +566,6 @@ Object를 삭제할 때 일일이 찾아서 삭제 하지않고 한번에 삭제
         
         
         <category>aws</category>
-        
-      </item>
-    
-      <item>
-        <title>반갑습니다</title>
-        <description>&lt;p&gt;반갑습니다!&lt;/p&gt;
-
-&lt;p&gt;예전부터 미뤄온 일을 하는 것처럼 막막하고 어떻게 시작해야될지 깜깜하지만
-이렇게 시작을 하다가 보면 습관이 되고 더욱 편해질 것 같아 &lt;code class=&quot;highlighter-rouge&quot;&gt;시작이 반&lt;/code&gt;이라는 마음으로 첫 블로그 글을 써 내려가 봅니다.&lt;/p&gt;
-
-&lt;p&gt;매일 개발을 하면서 느끼는 것도 있고 배워가는 것들이 많지만, 
-이렇게 글을 쓰거나 메모를 하지 않으면 금새 잊혀져가는게 안타깝고
-다른 개발자분들과 공유하며 피드백도 받고 싶어 시작하게 되었습니다.&lt;/p&gt;
-
-&lt;p&gt;많은 이야기를 함께 했으면 좋겠습니다.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 04 Jul 2016 04:24:00 +0900</pubDate>
-        <link>http://seunggu.github.io/%EC%9D%B8%EC%82%AC/2016/07/04/greeting.html</link>
-        <guid isPermaLink="true">http://seunggu.github.io/%EC%9D%B8%EC%82%AC/2016/07/04/greeting.html</guid>
-        
-        <category>인사</category>
-        
-        
-        <category>인사</category>
         
       </item>
     
@@ -654,10 +630,10 @@ Object를 삭제할 때 일일이 찾아서 삭제 하지않고 한번에 삭제
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 현재 서명참여 순서 이전의 모든 `서명인`에 해당
 for (i = 0; i &amp;lt; length; i += 1) {
-  if (participants[i].role === &#39;서명인&#39; &amp;amp;&amp;amp; participants[i].order &amp;lt;= currentParticipationOrder) {
+  if (participants[i].role === '서명인' &amp;amp;&amp;amp; participants[i].order &amp;lt;= currentParticipationOrder) {
     requestSignatureHistoryArray.push({
-      title: writer.name + &#39;(&#39; + writer.email + &#39;)님이 &#39; +
-      participants[i].name + &#39;(&#39; + participants[i].email + &#39;)님에게 문서의 서명을 요청하였습니다.&#39;,
+      title: writer.name + '(' + writer.email + ')님이 ' +
+      participants[i].name + '(' + participants[i].email + ')님에게 문서의 서명을 요청하였습니다.',
       time: participants[i].requestedAt
     });
   }
@@ -674,14 +650,16 @@ return requestSignatureHistoryArray;   }
 
 &lt;p&gt;}&lt;/p&gt;
 
-&lt;p&gt;/**
- * 참여자 배열에서 작성인을 찾아서 반환하는 메서드
- *
- * @param participants - 참여자 배열
- * @returns {*}
+&lt;p&gt;/**&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;참여자 배열에서 작성인을 찾아서 반환하는 메서드
+ *&lt;/li&gt;
+  &lt;li&gt;@param participants - 참여자 배열&lt;/li&gt;
+  &lt;li&gt;@returns {*}
  */
 function getWriter(participants) {
-  var i, length = participants.length;&lt;/p&gt;
+  var i, length = participants.length;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;for (i = 0; i &amp;lt; length; i += 1) {
     if (participants[i].role === ‘작성인’) {
@@ -699,7 +677,7 @@ function getWriter(participants) {
     
       <item>
         <title>반갑습니다</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;반갑습니다!&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;반갑습니다&quot;&gt;반갑습니다!&lt;/h2&gt;
 
 &lt;p&gt;예전부터 미뤄온 일을 하는 것처럼 막막하고 어떻게 시작해야될지 깜깜하지만
 이렇게 시작을 하다가 보면 습관이 되고 더욱 편해질 것 같아 &lt;strong&gt;시작이 반&lt;/strong&gt;이라는 마음으로 첫 블로그 글을 써 내려가 봅니다.&lt;/p&gt;
@@ -718,212 +696,6 @@ function getWriter(participants) {
         
         
         <category>인사</category>
-        
-      </item>
-    
-      <item>
-        <title>Mocha vs Jasmine(테스트 프레임워크 선택)</title>
-        <description>&lt;p&gt;Javascript 프로젝트를 진행하시면 품질 좋은 코드를 보증하기 위해 단위 테스트는 당연시 됩니다.
-아직 자신에게 맞는 테스트 프레임워크를 못 찾으신 분도 있으실테고,
-이미 사용하시는 테스트 프레임워크가 있으실 수도 있습니다.&lt;/p&gt;
-
-&lt;p&gt;이번에 포스트에서는 현재 날짜(2016. 02. 29) 기준으로 테스트 프레임워크를 비교를 해볼까합니다.
-사실상 Mocha vs Jasmine 이지만, 최근에 주목받고 있거나 특이한 프레임워크도 한번 소개 해볼까 합니다.&lt;br /&gt;
-(테스트 프레임워크가 하는 기능들을 열거하는 것보단 비교해서 선택할 때 도움이 될 수 있도록 글을 간략히 했습니다)
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;mocha&quot;&gt;Mocha&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;http://expressjs.com&quot;&gt;Express&lt;/a&gt;와 &lt;a href=&quot;http://jade-lang.com&quot;&gt;Jade&lt;/a&gt; 등을 만든 TJ 할로웨이 척이 만든 테스트 프레임워크인데, 현재 가장 인기있는 프레임워크입니다.
-현재 Airbnb에서는 Mocha를 테스트 프레임워크로 쓰고 있고 밑의 사진은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Mocha 프로젝트의 Github Graph&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jasmine 프로젝트의 Github Graph&lt;/code&gt;인데
-사진을 보게되면 Jasmine보다 Mocha가 좀 더 개발이 활발하게 이루어 지고 있습니다.&lt;/p&gt;
-
-&lt;h5 id=&quot;mocha-github-graph&quot;&gt;Mocha Github Graph&lt;/h5&gt;
-&lt;p&gt;&lt;a href=&quot;/assets/post-image/2016-02-29/mocha-graph.png&quot; data-lightbox=&quot;mocha-graph&quot; data-title=&quot;github graph for mocha&quot;&gt;
-  &lt;img src=&quot;/assets/post-image/2016-02-29/mocha-graph.png&quot; title=&quot;github graph for mocha&quot; /&gt;
-&lt;/a&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;jasmine-github-graph&quot;&gt;Jasmine Github Graph&lt;/h5&gt;
-&lt;p&gt;&lt;a href=&quot;/assets/post-image/2016-02-29/jasmine-graph.png&quot; data-lightbox=&quot;jasmine-graph&quot; data-title=&quot;github graph for jasmine&quot;&gt;
-  &lt;img src=&quot;/assets/post-image/2016-02-29/jasmine-graph.png&quot; title=&quot;github graph for jasmine&quot; /&gt;
-&lt;/a&gt;
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;jasmine&quot;&gt;Jasmine&lt;/h2&gt;
-&lt;p&gt;2.x대로 넘어오면서 Mocha랑 비교되던 &lt;code class=&quot;highlighter-rouge&quot;&gt;asynchronous testing&lt;/code&gt;이 Mocha와 같이 done을 써서 처리하도록 되었고
-이에 따라 크게 Mocha와 비교해서 기능적으로 부족함은 없어졌습니다. 그리고 주목해야할 점은 AngularJS 1.0과 2.0 Beta 모두 Document 개발문서에서 unit-test 부분을
-Jasmine을 이용하여 예제를 제공하고 있습니다.
-밑에 표와 같이 &lt;a href=&quot;http://programmingsummaries.tistory.com/383&quot;&gt;2015 Frontend Tooling Servey&lt;/a&gt;에서 테스트 프레임워크 투표에서 사용률 1위로 나온 점도 눈여겨 볼 만 합니다.&lt;/p&gt;
-
-&lt;h5 id=&quot;frontend-tooling-servey-javascript-testing&quot;&gt;2015 Frontend Tooling Servey (JavaScript Testing)&lt;/h5&gt;
-&lt;p&gt;&lt;a href=&quot;/assets/post-image/2016-02-29/javascript-testing.png&quot; data-lightbox=&quot;javascript-testing&quot; data-title=&quot;bar graph for 2015 servey javascript testing&quot;&gt;
-  &lt;img src=&quot;/assets/post-image/2016-02-29/javascript-testing.png&quot; title=&quot;bar graph for 2015 servey javascript testing&quot; /&gt;
-&lt;/a&gt;
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;mocha-vs-jasmine&quot;&gt;Mocha vs Jasmine&lt;/h2&gt;
-&lt;p&gt;위에 말한대로, 크게 보면 현재 Mocha와 Jasmine의 기능적인 차이점은 없습니다. 둘다 테스팅하기에 부족함이 없고 꾸준히 개발되고 있으며 사용률도 비슷합니다.
-다른 점을 보면 일단 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jasmine&lt;/code&gt;은 Assertion 라이브러리와 Mocking 라이브러리가 &lt;code class=&quot;highlighter-rouge&quot;&gt;내장&lt;/code&gt;되어 있어 바로 사용할 수 있으며,
-&lt;code class=&quot;highlighter-rouge&quot;&gt;Mocha&lt;/code&gt;는 Assertion과 Mocking에 대해서 &lt;code class=&quot;highlighter-rouge&quot;&gt;외부 라이브러리를 추가&lt;/code&gt;해서 사용해야 된다는 점입니다.
-Jasmine는 사용자가 선택에 부담없이 바로 사용할 수 있고, Mocha는 어떤 외부 라이브러리를 써야될지 선택을 해야합니다.
-어쩌면 Mocha의 단점이라고 생각들 수도 있지만 자신에게 맞는 외부 라이브러리를 찾아서 쓰면 되므로 장점이 되기도 합니다.&lt;br /&gt;
-(하지만 Mocha를 사용하는 유저들은 보통 Assertion 라이브러리로 &lt;a href=&quot;http://chaijs.com&quot;&gt;chai&lt;/a&gt;를, Mocking 라이브러리로 &lt;a href=&quot;http://sinonjs.org&quot;&gt;sinon&lt;/a&gt;을 많이 사용합니다)&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;sinon에는 fake server를 만들어 api를 테스트할 수 있는 기능이 있는데 Jasmine에서는 지원하지 않습니다. 하지만, Jasmine도 언제든지 sinon을 추가해 사용할 수 있습니다. 다만 이미 Mocking 라이브러리가 있는데 또 추가하기가 꺼려집니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;둘 프레임워크 모두 기능적으로는 부족함이 없고 비슷하기까지합니다. 그래서 더욱 선뜻 고르기가 참 힘듭니다.
-회사에서는 Mocha을 사용하는데, 아무래도 좀 더 개발이 활발한 Mocha쪽으로 마음이 기울기도 하고 Airbnb와 TJ 할로웨이 척에 대한 신뢰감이 작용하기도 했습니다.
-다른 기타 블로그 글이나 문서를 보더라도 이 선택에 대한 결정은 어쩌면 기능 외 적으로 좀 더 선호하고 신뢰가 가는 쪽으로 선택하면 될 것 같습니다.
-&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;기타 테스트 프레임워크 간단히 보기&lt;/h2&gt;
-
-&lt;h2 id=&quot;jest&quot;&gt;Jest&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;Facebook에서 만든 테스트 프레임워크이며, 현재 Facebook에서 사용 중.&lt;/li&gt;
-  &lt;li&gt;역시 React에서도 Jest를 사용하여 unit-test의 예로 들고 있다.&lt;/li&gt;
-  &lt;li&gt;사용자에 요청에 대한 지원이 원활하지 않아 커뮤니티에서 평판이 좋지 않은 편&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://facebook.github.io/jest/&quot;&gt;https://facebook.github.io/jest/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;guiter&quot;&gt;Guiter&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;네이버에서 만든 테스트 프레임워크로 참신하고 재미있다.&lt;/li&gt;
-  &lt;li&gt;이미지 기반으로 테스팅이 가능하다.&lt;/li&gt;
-  &lt;li&gt;한글로 테스팅 스크립트를 작성한다.&lt;/li&gt;
-  &lt;li&gt;참신하지만 실제 프로젝트에 적용하긴 힘들 것 같다.&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://d2.naver.com/helloworld/1296&quot;&gt;http://d2.naver.com/helloworld/1296&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Mon, 29 Feb 2016 09:00:00 +0900</pubDate>
-        <link>http://seunggu.github.io/javascript/2016/02/29/Mocha-vs-Jasmine-(%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3-%E1%84%91%E1%85%B3%E1%84%85%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3-%E1%84%89%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A2%E1%86%A8).html</link>
-        <guid isPermaLink="true">http://seunggu.github.io/javascript/2016/02/29/Mocha-vs-Jasmine-(%E1%84%90%E1%85%A6%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3-%E1%84%91%E1%85%B3%E1%84%85%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%8B%E1%85%AF%E1%84%8F%E1%85%B3-%E1%84%89%E1%85%A5%E1%86%AB%E1%84%90%E1%85%A2%E1%86%A8).html</guid>
-        
-        <category>단위</category>
-        
-        <category>테스트,</category>
-        
-        <category>테스트</category>
-        
-        <category>프레임워크,</category>
-        
-        <category>Mocha,</category>
-        
-        <category>Jasmine,</category>
-        
-        <category>Jest,</category>
-        
-        <category>Guiter,</category>
-        
-        <category>Javascript</category>
-        
-        
-        <category>Javascript</category>
-        
-      </item>
-    
-      <item>
-        <title>가용성 100% 노드 서버 만들기</title>
-        <description>&lt;p&gt;자신이 만든 서비스를 매일 사용해주는 사용자가 있습니다.
-그런 단골 사용자가 어느 날 서비스에 들어왔는데 “이 페이지는 찾을 수 없습니다”란 문구를 보고
-“서비스를 더 이상 운영하지 않나?”라고 생각이 들어 다음부터 오지 않는다면 그것만큼 서비스에 큰 피해가 생기는 것이 없겠죠.&lt;/p&gt;
-
-&lt;p&gt;그 만큼 서비스의 가용성을 높여 항상 클라이언트의 요청에 응답을 줄 수 있게 해주는 것이 중요한 것은
-이 글을 읽으시는 분 모두 아실겁니다. 하지만 생각보다 노드를 운영하면서 가용성 100%에 도전하는 것은 생각보다 어렵습니다.&lt;/p&gt;
-
-&lt;p&gt;대규모 서버를 운영하시는 분들에겐 &lt;a href=&quot;https://en.wikipedia.org/wiki/Load_balancing_(computing)&quot;&gt;로드 밸런싱&lt;/a&gt;라는 강력한 무기가 있지만,
-서비스를 막 시작하거나 규모가 작은 서비스에서는 로드 밸런스 등이 오히려 부담이 될 수 있다고 생각합니다.
-이번 포스트는 이런 분들에게 더욱 도움이 될 것 같습니다만,
-대규모 서버에도 꼭 도입이 필요하다고 생각합니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;첫번째, 에러의 종류와 처리과정 알기&lt;/h2&gt;
-
-&lt;p&gt;먼저 노드에서 에러를 전달하는 3가지 방법이 있습니다.
-* Error를 throw하는 방법. ex) throw new Erorr(‘error’);
-* error 객체를 error handler callback에 전달하는 방법. ex) next(err);
-* EventEmitter를 통해 “error” event emit&lt;/p&gt;
-
-&lt;p&gt;error 객체는 Error class의 instance입니다. error 객체는 handler 함수에 패스되거나 throw 할 수 있죠.
-error 객체가 throw 되었을 때, exception이 됩니다.&lt;/p&gt;
-
-&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
-
-&lt;h2 id=&quot;adding-new-posts&quot;&gt;Adding New Posts&lt;/h2&gt;
-
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
-
-&lt;h3 id=&quot;tags-and-categories&quot;&gt;Tags and Categories&lt;/h3&gt;
-
-&lt;p&gt;If you list one or more categories or tags in the front matter of your post, they will be included with the post on the page as links. Clicking the link will bring you to an auto-generated archive page for the category or tag, created using the &lt;a href=&quot;https://github.com/jekyll/jekyll-archives&quot;&gt;jekyll-archive&lt;/a&gt; gem.&lt;/p&gt;
-
-&lt;h3 id=&quot;cover-images&quot;&gt;Cover Images&lt;/h3&gt;
-
-&lt;p&gt;To add a cover image to your post, set the “cover” property in the front matter with the relative URL of the image (i.e. &lt;code&gt;cover: &quot;/assets/cover_image.jpg&quot;&lt;/code&gt;).&lt;/p&gt;
-
-&lt;h3 id=&quot;code-snippets&quot;&gt;Code Snippets&lt;/h3&gt;
-
-&lt;p&gt;You can use &lt;a href=&quot;https://highlightjs.org/&quot;&gt;highlight.js&lt;/a&gt; to add syntax highlight code snippets:&lt;/p&gt;
-
-&lt;p&gt;Use the &lt;a href=&quot;https://github.com/Shopify/liquid/wiki/Liquid-for-Designers&quot;&gt;Liquid&lt;/a&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;highlight&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;language&amp;gt;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt; tag to add syntax highlighting to code snippets.&lt;/p&gt;
-
-&lt;p&gt;For instance, this template…&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;{% highlight javascript %}    
-function demo(string, times) {    
-  for (var i = 0; i &lt;span class=&quot;nt&quot;&gt;&amp;lt; times&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;    
-    &lt;span class=&quot;na&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;);&lt;/span&gt;    
-  &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;    
-&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;    
-&lt;span class=&quot;na&quot;&gt;demo&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;(&quot;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;world&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;!&quot;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;endhighlight&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;%}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;…will come out looking like this:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;demo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;times&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;demo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;hello, world!&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Syntax highlighting is done using &lt;a href=&quot;https://highlightjs.org/&quot;&gt;highlight.js&lt;/a&gt;. You can change the active theme in &lt;a href=&quot;https://github.com/bencentra/centrarium/blob/2dcd73d09e104c3798202b0e14c1db9fa6e77bc7/_includes/head.html#L15&quot;&gt;head.html&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;images&quot;&gt;Images&lt;/h3&gt;
-
-&lt;p&gt;Lightbox has been enabled for images. To create the link that’ll launch the lightbox, add &lt;code&gt;data-lightbox&lt;/code&gt; and &lt;code&gt;data-title&lt;/code&gt; attributes to an &lt;code&gt;&amp;lt;a&amp;gt;&lt;/code&gt; tag around your &lt;code&gt;&amp;lt;img&amp;gt;&lt;/code&gt; tag. The result is:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;//bencentra.com/assets/images/falcon9_large.jpg&quot; data-lightbox=&quot;falcon9-large&quot; data-title=&quot;Check out the Falcon 9 from SpaceX&quot;&gt;
-  &lt;img src=&quot;//bencentra.com/assets/images/falcon9_small.jpg&quot; title=&quot;Check out the Falcon 9 from SpaceX&quot; /&gt;
-&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;For more information, check out the &lt;a href=&quot;http://lokeshdhakar.com/projects/lightbox2/&quot;&gt;Lightbox&lt;/a&gt; website.&lt;/p&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://github.com/jekyll/jekyll-help&quot;&gt;Jekyll’s dedicated Help repository&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;참고 사이트&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://nodeqa.com/nodejs_ref/106&quot;&gt;[cookbook]올바른 Exception 처리방법&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://nodeqa.com/nodejs_ref/19&quot;&gt;[cookbook] Domain API (또다른 try ~ catch)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://engineering.gosquared.com/error-handling-using-domains-node-js&quot;&gt;Crash safety using domains in Node.js&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://engineering.fluencia.com/blog/2013/12/20/the-4-keys-to-100-uptime-with-nodejs&quot;&gt;THE 4 KEYS TO 100% UPTIME WITH NODE.JS&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.joyent.com/developers/node/design/errors&quot;&gt;Error Handling in Node.js&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-</description>
-        <pubDate>Sun, 28 Feb 2016 09:00:00 +0900</pubDate>
-        <link>http://seunggu.github.io/node.js/2016/02/28/%E1%84%80%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC-100-%E1%84%82%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html</link>
-        <guid isPermaLink="true">http://seunggu.github.io/node.js/2016/02/28/%E1%84%80%E1%85%A1%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%89%E1%85%A5%E1%86%BC-100-%E1%84%82%E1%85%A9%E1%84%83%E1%85%B3-%E1%84%89%E1%85%A5%E1%84%87%E1%85%A5-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5.html</guid>
-        
-        <category>Node.js,</category>
-        
-        <category>운영,</category>
-        
-        <category>가용성</category>
-        
-        
-        <category>Node.js</category>
         
       </item>
     

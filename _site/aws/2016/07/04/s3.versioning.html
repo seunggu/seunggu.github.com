@@ -136,7 +136,7 @@
 </section>  
 
 <article class="post-content">
-  <h2 id="s3-versioning">1. S3 Versioning</h2>
+  <h2 id="1-s3-versioning">1. S3 Versioning</h2>
 
 <p>최근에 S3을 주로 사용하는 프로젝트를 진행하고 있습니다.
 비지니스 로직에 필요한 부분이 같은 파일(같은 S3 key를 가지는 파일)을 조금씩 수정하여 S3에 저장하는
@@ -147,7 +147,7 @@
 생각해볼만한 좋은 기능입니다.
 <br /><br /></p>
 
-<h2 id="version-id">2. Version id</h2>
+<h2 id="2-version-id">2. Version id</h2>
 
 <p>S3에 Bucket은 기본적으로 Versioning이 켜지지 않은 상태로 되어있고 
 Versioning은 <strong>Bucket 단위</strong>로만 켜고 끌 수 있습니다.
@@ -166,7 +166,7 @@ Versioning을 키고 Object를 업로드 할 경우에 <code class="highlighter-
 (예를 들면 Git의 <strong>commit hash</strong>와 비슷하다고 볼 수 있습니다.)
 <br /><br /></p>
 
-<h2 id="current-vs-noncurrent">3. current vs noncurrent</h2>
+<h2 id="3-current-vs-noncurrent">3. current vs noncurrent</h2>
 
 <p>S3 Versioning은 이 version id를 가지고 Object들을 관리하게 됩니다.
 기존에 파일을 하나 업로드한 뒤 S3 Key가 동일하도록 같은 이름의 파일을 다시 업로드 하면
@@ -181,7 +181,7 @@ S3 Key를 이용하여 Object를 불러오면 <code class="highlighter-rouge">cu
 
 <p><br /><br /></p>
 
-<h2 id="delete-marker">4. Delete Marker</h2>
+<h2 id="4-delete-marker">4. Delete Marker</h2>
 
 <p>당연히 Versioning을 이용하면 삭제된 Object도 복구 할 수 있습니다.
 이런 기능이 가능한 이유는 Versioning을 켜놓았을 경우 S3는 해당 Object를 삭제 하지 않습니다.
@@ -196,7 +196,7 @@ S3 Key를 이용하여 Object를 불러오면 <code class="highlighter-rouge">cu
 
 <p><br /><br /></p>
 
-<h2 id="lifecycle-configuration-for-a-bucket-with-versioning">5. Lifecycle Configuration for a Bucket with Versioning</h2>
+<h2 id="5-lifecycle-configuration-for-a-bucket-with-versioning">5. Lifecycle Configuration for a Bucket with Versioning</h2>
 
 <p>기본적으로 S3는 <code class="highlighter-rouge">Lifecyle Configuration</code>을 지원합니다.
 간단한 예를 들면, 만약 프로젝트에서 S3에 Object를 생성하고 
@@ -213,7 +213,7 @@ S3는 저장된 용량에 따라 월비용을 내야되기 때문에
 (Lifecycle에 대한 내용은 이 글에서 주제에 벗어나므로 참고자료에 링크 걸어 두었습니다)
 <br /><br /></p>
 
-<h2 id="section">6. 장점</h2>
+<h2 id="6-장점">6. 장점</h2>
 
 <ul>
   <li>version에 따른 Lifecycle Configuration이 가능하다.</li>
@@ -224,7 +224,7 @@ Object를 삭제할 때 일일이 찾아서 삭제 하지않고 한번에 삭제
 <br /><br /></li>
 </ul>
 
-<h2 id="section-1">7. 단점</h2>
+<h2 id="7-단점">7. 단점</h2>
 
 <ul>
   <li>아무래도 널리 사용되는 S3의 기능이 아니다 보니 다른 개발자가 와서 일을 할 시에 배워야한다.</li>
@@ -232,7 +232,7 @@ Object를 삭제할 때 일일이 찾아서 삭제 하지않고 한번에 삭제
 <br /><br /></li>
 </ul>
 
-<h2 id="section-2">8. 참고자료</h2>
+<h2 id="8-참고자료">8. 참고자료</h2>
 
 <ul>
   <li><a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectVersioning.html">AWS 공식 문서(Object Lifecycle Management)</a></li>
